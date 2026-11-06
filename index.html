@@ -1,8 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>🌺 旅遊手冊</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light;
+  --bg:#fff;--surface:#f3fafd;--line:#d6ebf5;--ink:#0b2f4a;--sub:#4f7388;
+  --sea:#0a73b8;--lagoon:#32b5d8;--sea-soft:#e1f3fb;--on-sea:#fff;
+}
+@media (prefers-color-scheme:dark){
+  :root{color-scheme:dark;--bg:#07202f;--surface:#0c2d42;--line:#17435e;--ink:#e8f5fc;--sub:#92b8cc;--sea:#4db4ea;--lagoon:#5fd0ea;--sea-soft:#10405c;--on-sea:#04202f}
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans TC",-apple-system,"PingFang TC","Microsoft JhengHei",sans-serif;line-height:1.6}
+.wrap{max-width:520px;margin:0 auto;padding-bottom:40px}
+header{padding:36px 22px 26px;background:linear-gradient(170deg,var(--sea) 0%,var(--lagoon) 100%);color:#fff}
+header h1{margin:0;font-size:26px;font-weight:700;letter-spacing:.02em}
+header p{margin:4px 0 0;font-size:14px;opacity:.92}
+svg.wave{display:block;width:100%;height:22px;margin-top:-1px;color:var(--bg)}
+h2{margin:22px 20px 4px;font-size:15px;color:var(--sub);font-weight:500}
+.list{display:grid;gap:12px;padding:10px 16px 0}
+a.card{display:flex;align-items:center;gap:14px;padding:16px;border:1px solid var(--line);border-radius:20px;background:var(--surface);color:inherit;text-decoration:none;transition:transform .15s,border-color .15s}
+a.card:active{transform:scale(.98)}
+a.card:hover{border-color:var(--lagoon)}
+a.card:focus-visible{outline:2px solid var(--lagoon);outline-offset:2px}
+.ico{flex:0 0 52px;height:52px;border-radius:16px;background:var(--sea-soft);display:grid;place-content:center;font-size:26px}
+.info{min-width:0;flex:1}
+.ttl{font-weight:700;font-size:16px}
+.meta{font-size:13px;color:var(--sub);margin-top:1px}
+.tag{display:inline-block;margin-top:6px;padding:1px 10px;border-radius:99px;background:var(--sea-soft);color:var(--sea);font-size:12px;font-weight:500}
+.go{color:var(--sea);font-size:20px}
+.empty{padding:24px 20px;color:var(--sub);font-size:14px;text-align:center}
+footer{margin-top:28px;text-align:center;font-size:12px;color:var(--sub)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>🌺 旅遊手冊</h1>
+  <p>歷史行程的紀錄</p>
+</header>
+<svg class="wave" viewBox="0 0 520 22" preserveAspectRatio="none" aria-hidden="true"><path d="M0 22V10C60 0 110 0 170 8s120 12 180 3 110-9 170 0v11z" fill="currentColor"/></svg>
 
-  <h2>🌺 2026 沖繩那霸行程選擇</h2>
-  <a href="2026NAHAGroup.html" style="padding: 10px 20px; background: #0a73b8; color: white; text-decoration: none; border-radius: 8px; margin: 10px; display: inline-block;">
-    👥 團體行程 (12/4 - 12/8)
-  </a>
-  <br>
+<main id="app"></main>
+<noscript><p class="empty"><a href="2026NAHAGroup.html">👥 2026 沖繩那霸團體行程</a></p></noscript>
+<footer>隨時更新・手機可加入主畫面</footer>
+</div>
 
+<script>
+/* 之後新增旅遊行程，只要在這個清單加一筆即可。
+   group：分區標題（同一個 group 會排在一起）
+   icon：圖示  title：行程名稱  meta：日期／地點  tag：小標籤（可省略）
+   href：行程網頁檔名（放在同一個資料夾）  */
+var TRIPS=[
+  {group:"🌺 2026 沖繩那霸",icon:"🏃🏻‍♀️",title:"團體行程",meta:"12/4 – 12/8・那霸馬拉松團體活動日",tag:"行程手冊",href:"2026NAHAGroup.html"}
+  /* ,{group:"🌺 2026 沖繩那霸",icon:"🚗",title:"自駕北上",meta:"12/7 – 12/8",tag:"自駕",href:"2026NAHADrive.html"} */
+];
 
+function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+var app=document.getElementById("app"),groups=[],map={};
+TRIPS.forEach(function(t){var g=t.group||"行程";if(!map[g]){map[g]=[];groups.push(g)}map[g].push(t)});
+app.innerHTML=groups.length?groups.map(function(g){
+  return '<h2>'+esc(g)+'</h2><div class="list">'+map[g].map(function(t){
+    return '<a class="card" href="'+esc(t.href)+'"><span class="ico">'+esc(t.icon||"🧳")+'</span><span class="info"><div class="ttl">'+esc(t.title)+'</div><div class="meta">'+esc(t.meta)+'</div>'+(t.tag?'<span class="tag">'+esc(t.tag)+'</span>':'')+'</span><span class="go" aria-hidden="true">›</span></a>'}).join("")+'</div>'}).join(""):'<p class="empty">目前還沒有行程</p>';
+</script>
+</body>
+</html>
