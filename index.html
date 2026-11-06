@@ -88,7 +88,8 @@ var app=document.getElementById("app"),groups=[],map={};
 TRIPS.forEach(function(t){var g=t.group||"行程";if(!map[g]){map[g]=[];groups.push(g)}map[g].push(t)});
 app.innerHTML=groups.length?groups.map(function(g){
   return '<h2>'+esc(g)+'</h2><div class="list">'+map[g].map(function(t){
-    return '<'+(t.href?'a class="card" href="'+esc(t.href)+'"':'button type="button" class="card locked" data-msg="'+esc(t.msg||"未公開")+'"')+'><span class="ico">'+esc(t.icon||"🧳")+'</span><span class="info"><div class="ttl">'+esc(t.title)+'</div><div class="meta">'+esc(t.meta)+'</div>'+(t.tag?'<div class="tags">'+[].concat(t.tag).map(function(x){return '<span class="tag">'+esc(x)+'</span>'}).join("")+'</div>':'')+'</span><span class="go" aria-hidden="true">'+(t.href?'›':'')+'</span></'+(t.href?'a':'button')+'>'}).join("")+'</div>'}).join(""):'<p class="empty">目前還沒有行程</p>';
+    return '<'+(t.href?''a class="card" href="'+esc(t.href)+'" target="_blank" rel="noopener"'
+:'button type="button" class="card locked" data-msg="'+esc(t.msg||"未公開")+'"')+'><span class="ico">'+esc(t.icon||"🧳")+'</span><span class="info"><div class="ttl">'+esc(t.title)+'</div><div class="meta">'+esc(t.meta)+'</div>'+(t.tag?'<div class="tags">'+[].concat(t.tag).map(function(x){return '<span class="tag">'+esc(x)+'</span>'}).join("")+'</div>':'')+'</span><span class="go" aria-hidden="true">'+(t.href?'›':'')+'</span></'+(t.href?'a':'button')+'>'}).join("")+'</div>'}).join(""):'<p class="empty">目前還沒有行程</p>';
 </script>
 </body>
 </html>
