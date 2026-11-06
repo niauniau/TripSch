@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>🌺那霸馬拉松行程</title>
+
+  <!-- 加上下面這行讓 LINE 抓取專用標題 -->
+  <meta property="og:title" content="🌺那霸馬拉松行程手冊">
+  <meta property="og:description" content="12/4 – 12/8 沖繩那霸馬拉松行程">
+<head>
+  <meta charset="utf-8">
+  <title>🌺那霸馬拉松行程</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+  color-scheme:light;
+  --bg:#fff;--surface:#f3fafd;--line:#d6ebf5;--ink:#0b2f4a;--sub:#4f7388;
+  --sea:#0a73b8;--lagoon:#32b5d8;--sea-soft:#e1f3fb;--warn-bg:#fff4e0;--warn-ink:#7a4a00;--warn-line:#f2c777;--on-sea:#fff;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;--bg:#07202f;--surface:#0c2d42;--line:#17435e;--ink:#e8f5fc;--sub:#92b8cc;
+    --sea:#4db4ea;--lagoon:#5fd0ea;--sea-soft:#10405c;--warn-bg:#3a2d10;--warn-ink:#ffd48a;--warn-line:#7a5a1c;--on-sea:#04202f;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;--bg:#07202f;--surface:#0c2d42;--line:#17435e;--ink:#e8f5fc;--sub:#92b8cc;
+  --sea:#4db4ea;--lagoon:#5fd0ea;--sea-soft:#10405c;--warn-bg:#3a2d10;--warn-ink:#ffd48a;--warn-line:#7a5a1c;--on-sea:#04202f;
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans TC",-apple-system,"PingFang TC","Microsoft JhengHei",sans-serif;line-height:1.6}
+.wrap{max-width:520px;margin:0 auto;padding-bottom:48px}
+header{padding:28px 20px 22px;background:linear-gradient(170deg,var(--sea) 0%,var(--lagoon) 100%);color:#fff;position:relative;overflow:hidden}
+header h1{margin:0;font-size:24px;font-weight:700;letter-spacing:.02em}
+header p{margin:4px 0 0;font-size:14px;opacity:.92}
+.prog{margin-top:18px;font-size:13px}
+.bar{height:6px;border-radius:99px;background:rgba(255,255,255,.3);margin-top:6px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:#fff;border-radius:99px;transition:width .35s}
+svg.wave{display:block;width:100%;height:22px;margin-top:-1px;color:var(--bg)}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);display:flex;gap:8px;overflow-x:auto;padding:10px 16px;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+nav button{flex:0 0 auto;border:1px solid var(--line);background:var(--surface);color:var(--sub);border-radius:14px;padding:6px 14px;font:inherit;font-size:13px;text-align:center;cursor:pointer;min-width:62px}
+nav button b{display:block;font-size:16px;color:var(--ink);line-height:1.3}
+nav button[aria-selected="true"]{background:var(--sea);border-color:var(--sea);color:var(--on-sea)}
+nav button[aria-selected="true"] b{color:var(--on-sea)}
+nav button:focus-visible,label:focus-within{outline:2px solid var(--lagoon);outline-offset:2px}
+.day{padding:20px 16px 0}
+.day h2{margin:0;font-size:20px}
+.day .theme{margin:2px 0 8px;color:var(--sub);font-size:14px}
+.day .done{font-size:12px;color:var(--sea);font-weight:500}
+.note{margin:12px 0 0;padding:10px 12px;border-radius:12px;background:var(--sea-soft);font-size:13px;color:var(--ink)}
+ul{list-style:none;margin:14px 0 0;padding:0;border-left:2px solid var(--line);margin-left:6px}
+li{position:relative;margin:0 0 12px 18px}
+li::before{content:"";position:absolute;left:-25px;top:18px;width:10px;height:10px;border-radius:50%;background:var(--bg);border:2px solid var(--lagoon)}
+li.on::before{background:var(--lagoon)}
+label{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:var(--surface);border:1px solid var(--line);border-radius:16px;cursor:pointer}
+input[type=checkbox]{appearance:none;-webkit-appearance:none;flex:0 0 24px;width:24px;height:24px;margin:2px 0 0;border:2px solid var(--lagoon);border-radius:8px;background:var(--bg);display:grid;place-content:center;cursor:pointer}
+input[type=checkbox]::after{content:"";width:6px;height:11px;border:solid var(--on-sea);border-width:0 2.5px 2.5px 0;transform:rotate(45deg) scale(0);transition:transform .15s;margin-top:-2px}
+input[type=checkbox]:checked{background:var(--sea);border-color:var(--sea)}
+input[type=checkbox]:checked::after{transform:rotate(45deg) scale(1)}
+.txt{min-width:0}
+.time{display:inline-block;font-size:12px;font-weight:700;color:var(--sea);margin-bottom:1px}
+.ttl{font-weight:500;font-size:15px}
+.dsc{font-size:13px;color:var(--sub);margin-top:2px}
+li.on .ttl{text-decoration:line-through;text-decoration-color:var(--lagoon);color:var(--sub)}
+.lks{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.lks a{font-size:12px;color:var(--sea);background:var(--sea-soft);border-radius:99px;padding:3px 10px;text-decoration:none;font-weight:500}.lks a:focus-visible{outline:2px solid var(--lagoon)}
+.warn{margin:6px 0 0;padding:10px 12px;border-radius:12px;background:var(--warn-bg);border:1px solid var(--warn-line);color:var(--warn-ink);font-size:13px}
+.warn b{display:block;margin-bottom:2px}
+.free{margin:28px 16px 0;padding:18px 14px 14px;border-radius:22px;background:linear-gradient(160deg,var(--sea-soft),var(--bg));border:1.5px solid var(--lagoon)}
+.free h2{margin:0;font-size:18px;line-height:1.4}
+.free .sub{margin:2px 0 14px;font-size:13px;color:var(--sub)}
+.fi{margin:0 0 10px}.fi:last-child{margin:0}.fi label{background:var(--bg)}
+.fi.on .ttl{text-decoration:line-through;text-decoration-color:var(--lagoon);color:var(--sub)}
+.hl{font-size:13px;color:var(--sub);margin-top:3px}
+.tip{margin-top:8px;padding:8px 10px;border-radius:10px;background:var(--sea-soft);font-size:12.5px;color:var(--ink)}
+.opt{margin-top:6px;font-size:13px;color:var(--sub)}.opt b{display:block;color:var(--ink);font-weight:500}
+.det{margin-top:8px;border:1px solid var(--warn-line);border-radius:16px;background:var(--bg);overflow:hidden}
+.det summary{padding:12px 14px;font-weight:500;font-size:14px;cursor:pointer;color:var(--warn-ink);background:var(--warn-bg);list-style:none}
+.det summary::-webkit-details-marker{display:none}
+.det summary::after{content:"＋";float:right}.det[open] summary::after{content:"－"}
+.dbody{padding:12px;display:grid;gap:10px}
+.dinfo{padding:10px 12px;border-radius:12px;background:var(--sea-soft);font-size:13px}.dinfo b{display:block;margin-bottom:2px}
+.plan{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--surface)}
+.plan-h{padding:10px 12px;background:var(--sea-soft)}.plan-h .pn{font-weight:700;font-size:15px}.plan-h .pp{color:var(--sea);font-weight:700;font-size:14px}.plan-h .pf{font-size:12px;color:var(--sub);margin-top:1px}
+.prow{display:grid;grid-template-columns:62px 1fr;gap:8px;padding:7px 12px;border-top:1px solid var(--line);font-size:13px}.prow span:first-child{color:var(--sub)}
+.reset{display:block;margin:20px auto 0;border:0;background:none;color:var(--sub);font:inherit;font-size:12px;text-decoration:underline;cursor:pointer}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>🌺那霸馬拉松行程</h1>
+  <p>12/4 – 12/8・沖繩那霸</p>
+  <div class="prog"><span id="ptxt"></span><div class="bar"><i id="pbar"></i></div></div>
+</header>
+<svg class="wave" viewBox="0 0 520 22" preserveAspectRatio="none" aria-hidden="true"><path d="M0 22V10C60 0 110 0 170 8s120 12 180 3 110-9 170 0v11z" fill="currentColor"/></svg>
+<nav id="tabs" role="tablist" aria-label="行程天數"></nav>
+<main id="main"></main>
+<button class="reset" id="reset">清除所有勾選</button>
+</div>
+<script>
+var D=[
+
+{d:"🛒",w:"",n:"彈性",free:1,title:"🛒 彈性 (不限)",s:"都可以、剛好路過就去、剛好看到就買",items:[
+ {t:"泡湯",h:"りっかりっか湯",x:"靠近牧志站步行國際通到，有SPA按摩池，也有烤箱、蒸氣室、碳酸溫泉♨️沒有硫磺味，可以泡很久，有兩個湯屋區，每天會交換。另外還有付費的岩盤浴可以使用。營業時間 6:00-23:00",l:[["りっかりっか湯","https://maps.app.goo.gl/M5AAHkf6L5Y6VK9BA?g_st=ic"]]},
+ {t:"散策",h:"壺屋陶瓷街",x:"全長約400公尺，鋪滿了琉球石灰岩石板路，兩旁保留了紅瓦古民家、石牆與歷史悠久的登窯。路上也很多小店、咖啡",l:[["那覇市立壺屋焼物博物館","https://maps.app.goo.gl/ait3f6JJekkm8JWA7?g_st=ic"]]},
+ {t:"散策、土產",h:"國際通",x:"各式沖繩黑糖、御菓子御殿紅芋塔、吉祥物限定商品。",tip:"隨時只要有走到國際通，看哪一家順眼就可以直接進去逛。"},
+{t:"飲料",h:"自動販賣機",x:"",l:[["沖繩奶油可樂","https://www.instagram.com/reel/DYgSZm-T2A7"],["波上宮苦瓜茶","https://www.instagram.com/reel/DdbG0anBifN"]]}]},
+
+
+
+{d:"12/4",w:"五",n:"抵達日",s:"踩點、補給",items:[
+ {t:"機場",h:"抵達那霸機場",o:[["08:55 虎航","班機編號：IT230"],["10:50 華航","班機編號：CI120"],["14:15 星宇","班機編號：JX870"]]},
+ {t:"check-in",l:[["東橫INN 那霸旭橋站前","https://maps.app.goo.gl/Jd716NmUGgAzv6ry8?g_st=ic"]],h:"看時間先寄物或辦理入住"},
+ {t:"午餐",h:"附近享用沖繩料理",o:[["輕食・MORNING BOWLS NAMINOUE CAFE 7:00-15:00",""],["咖啡・TURNER COFFEE 10:30-17:00",""],["名物牛排・傑克牛排館 11:00-22:30",""]],l:[["MORNING BOWLS NAMINOUE CAFE","https://maps.app.goo.gl/KTuBJMPYAmCa9GFG8?g_st=ic"],["TURNER COFFEE","https://maps.app.goo.gl/XBPavtmZPy7mznLT8?g_st=ic"],["傑克牛排館 ジャッキーステーキハウス","https://maps.app.goo.gl/xF8NU2vZ5cFGbWzZA?g_st=ic"]]},
+ {t:"",h:"🌊 波上宮",x:"從飯店步行 15 分鐘，造訪崖上絕美海景神社參拜、求馬拉松祈福御守，並在沙灘散步看海（全平路，最輕鬆省體力）。波上宮是那霸市著名的神社，供奉海上與學業平安。其「書包御守」深受當地學生與家長喜愛。每逢考季，總吸引大批信徒前來祈願，是極具代表性的祈福紀念品。有波上宮限定販賣機苦瓜茶",l:[["波上宮","https://maps.app.goo.gl/Roxqd7QWW9JXdHbg7?g_st=ic"],["波之上沙灘","https://maps.app.goo.gl/Cw9ZjXx9KD79sii29?g_st=ic"],["旅遊參考","https://taiwantour.net/namikami-palace"]]}, {t:"18:30:晚餐",h:"附近享用沖繩料理",o:[["親子丼・鳥と卵の専門店 鳥玉 11:00-22:00",""],["蕎麥麵・Sobe Soba 11:30-21:00",""],["海鮮・HIPPARIDAKO大盤振舞 16:00-午夜","妙妙分享妙妙分享：下午時段有$300元歡樂啤酒暢飲，海鮮很新鮮好吃"],["雞串・串焼車 16:00-22:00",""]],x:"依當天想吃的或狀況改吃別家",l:[["鳥と卵の専門店 鳥玉 泉崎店","https://maps.app.goo.gl/eFvrwEufiUP7kDwSA?g_st=ic"],["Sobe Soba 楚辺そば","https://maps.app.goo.gl/razETToJC41tPs9aA?g_st=ic"],["HIPPARIDAKO 大盤振舞 ひっぱり鮹","https://maps.app.goo.gl/DRA5z3ZHxR9fTzrC6?g_st=ic"],["串焼車","https://maps.app.goo.gl/mfDrpScJmN2awyxK6?g_st=ic"]]},
+ {t:"餐後",h:"大採買；超市買齊水、水果等等",o:[["超市一・Town Plaza Kanehide 7:00-23:00",""],["超市二・Maxvalue 8:00-午夜",""],["唐吉訶德 8:00-3:00",""],["大國藥妝 9:05-22:50",""]],l:[["Town Plaza Kanehide 壺川店（1公里）","https://maps.app.goo.gl/3uUgj8LKynq6EcRq7?g_st=ic"],["Maxvalue 壷川店（1.5公里）","https://maps.app.goo.gl/46s9DCAn7kpdjn9f6?g_st=ic"],["唐吉訶德 那霸壺川店（900公尺）","https://maps.app.goo.gl/9wpHQ7ULKxocsDke9"],["大國藥妝 久茂地1丁目店（250公尺）","https://maps.app.goo.gl/rxALX89NUfBU4Nr78?g_st=ic"]]},{t:"晚間",h:"夜景",x:"想去才去晚上走走",o:[["明治橋・那霸港夕陽或夜景","眺望遠方那霸西道路高架橋與港口起重機的夜間燈火"],["那霸埠頭旅客碼頭","著名的「大型民謠餐船（Moby Dick）」停靠，安全的親水步道日劇港灣風景"],["天空酒吧 AUGUST MOON・高空露台酒吧 16:00-午夜",""]],l:[["明治橋","https://maps.app.goo.gl/uDzbpmrkhkzfcexL9?g_st=ic"],["那霸埠頭旅客碼頭","https://maps.app.goo.gl/bPj2asP3mRRNNZtX8?g_st=ic"],
+["天空酒吧","https://maps.app.goo.gl/V6eUTGzAPGAetTvp8?g_st=ic"]]}]},
+
+{d:"12/5",w:"六",n:"報到日",s:"賽前晨跑、領物資，逛街買伴手禮",items:[
+ {t:"07:00–07:30",h:"賽前晨跑",x:"飯店 ➔ 明治橋 ➔ 奧武山公園繞一圈折返，約 2.2 公里，熟悉隔日終點",l:[["奧武山陸上競技場","https://maps.app.goo.gl/MQaSbE2TgajJrG5r8?g_st=ic"]]},
+ {t:"08:00",h:"早餐：Marutama味噌飯屋",x:"天然味噌御膳，飯店 700 公尺",l:[["味噌めしや まるたま","https://maps.app.goo.gl/Leh9aQX9eCmewhkDA?g_st=ic"]]},
+ {t:"10:00",h:"報到：奧武山公園武道館",x:"報到領取號碼布、公園神社走走。號碼布及T恤發放時間：12月5日（星期六）上午10點至晚上8點",o:[["護國神社・12生肖御守",""],["沖宮神社・根本御守界COSTCO",""]],l:[["奧武山武道館","https://maps.app.goo.gl/JowS2LXuFs4WKvNCA?g_st=ic"],["中文賽事資訊","https://runjapan.jp/entry/runtes/smp/competitiondetail.do?raceId=E337611&div=1"],["官方賽事資訊","https://naha-marathon.jp"]]},
+ {t:"12:00",h:"午餐：JEF Burger NAHA（那霸店）",x:"搭電車至牧志站，步行前往商店街內享用沖繩限定「苦瓜午餐肉煎蛋漢堡」（交通20分鐘）",l:[["JEF Burger NAHA","https://maps.app.goo.gl/fL696Txu9iNS99dG9?g_st=ic"]]},
+ {t:"下午",h:"輕鬆逛國際通",
+o:[["拉麵・暖暮拉麵 9:00-2:00",""],["飯糰・松尾ポーたま 7:00-20:00",""],["豬排・とんかつ小やじ 11:00-17:00",""],["甜點・FontanaGelato 10:30-21:30",""],["甜點・mille mele 蘋果派 9:00-17:00",""],["輕食/甜點・A LONG VACATION. 8:00-23:00",""],["市場・第一牧志公設市場 8:00-22:00",""]],
+l:[["沖繩特色美食","https://visitokinawajapan.com/zh-hant/travel-inspiration/must-try-okinawa-street-foods/"],["那霸伴手禮推薦清單","https://www.lotofjapan.com/pages/okinawaomiyage"],["暖暮拉麵 那霸牧志店","https://maps.app.goo.gl/mbJ87sSvQbDzokyK6?g_st=ic"],["Pork Tamago Onigiri Makishi Market ポーたま 牧志市場店","https://maps.app.goo.gl/UV5KgYpXwN5yUgYXA?g_st=ic"],
+["とんかつ小やじ那覇店","https://maps.app.goo.gl/yWn1KdYQmEMeVD9A9?g_st=ic"],
+["FontanaGelato","https://maps.app.goo.gl/95aE9pU4wUpTw5nX7?g_st=ic"],["mille mele ミレメーレ","https://maps.app.goo.gl/qS3bfhi3eunLmyL39?g_st=ic"],["A LONG VACATION.","https://maps.app.goo.gl/C6ew2pYyUZ5wMbj56?g_st=ic"],["第一牧公設市場","https://maps.app.goo.gl/4eD2mmsg1M9w1yrt8?g_st=ic"]],
+x:"吃飽後沿路輕鬆逛國際通、喝咖啡、採買伴手禮。傍晚直接回飯店休息，好好享受隔日賽事（不另外安排遠距離景點，保護雙腿）"}]},
+
+
+{d:"12/6",w:"日",n:"賽事日",s:"完賽、阿古豬慶功宴",items:[
+ {t:"09:00–15:15",l:[["那霸馬拉松會場（奧武山陸上競技場）","https://maps.app.goo.gl/MQaSbE2TgajJrG5r8?g_st=ic"]],h:"那霸馬拉松正式開跑 🏃‍♂️"},
+ {t:"16:00",h:"步行 1.1 公里回飯店"},
+ {t:"16:30–17:30",h:"飯店整理休息",x:"洗澡、換衣服"},
+ {t:"17:30–18:15",h:"散步 700 公尺前往餐廳"},
+ {t:"18:15–20:15",h:"島しゃぶしゃぶNAKAMA 阿古豬涮涮鍋",l:[["島しゃぶしゃぶNAKAMA","https://maps.app.goo.gl/XSDMXKkQcwx6vAR28?g_st=ic"],["菜單","https://tabelog.com/okinawa/A4701/A470101/47020585/"]],det:1}]},
+
+
+{d:"12/7",w:"一",n:"北上日",s:"搭阿鴻租的車🚗自駕北上度假",items:[
+{t:"早餐",h:"飯店附近早餐選擇",x:"飯店附近早餐很多，想吃吃看",o:[["和食・あさとん食堂 6:00",""],["和食・風林火山 7:00",""],["和食・Anytime Breakfast  7:00",""],
+["輕食・oHacorte Bakery 7:30",""],["輕食・パーラーぬちぐすい 8:00",""],["咖啡・AO CAFE 7:00",""],["喫茶・甘味處 萬丸 7:00",""],["美式・Better Girl 7:00",""]],
+l:[["あさとん食堂","https://maps.app.goo.gl/G81ffwVMfFH2qk4P6?g_st=ic"],["風林火山","https://maps.app.goo.gl/4DgFyVkEK8rMCBXb6?g_st=ic"],["Anytime Breakfast Higashimachi","https://maps.app.goo.gl/mSuF1QUTJg7jn5Ev8?g_st=ic"],["oHacorte Bakery","https://maps.app.goo.gl/qn6mM1KFLaXvdFYd6?g_st=ic"],["パーラーぬちぐすい","https://maps.app.goo.gl/rBv5dXe4xWQXMsfL6?g_st=ic"],["AO CAFE","https://maps.app.goo.gl/LJE97F8E6YggApfJA?g_st=ic"],["甘味處 萬丸 那霸泉崎店","https://maps.app.goo.gl/Se3dupyLgJm7yT2V7?g_st=ic"],["Better Girl","https://maps.app.goo.gl/x345Ddi8Mij4ZeKv8?g_st=ic"]]
+},
+ {t:"上午",h:"退房、租車",x:"退房後直接出發自駕北上"}, {t:"潮間帶",h:"PARCO CITY",x:"早起退潮前後2小時去隔壁的潮間帶。不要進去PARCO CITY，會出不來",l:[["PARCO CITY 浦添西海岸","https://maps.app.goo.gl/bo9qh7zWMFU6nGfa9?g_st=ic"],["沖繩PARCO是什麼無限城","https://www.threads.com/share/BAV6xdRMJ1"],["PARCO旁邊的潮間帶","https://www.instagram.com/reel/DXbhEwYEkF5"],["Okinawa潮汐漲退時間表","https://zh.tideschart.com/Japan/Okinawa/"]
+]},
+ {t:"",h:"港川外人住宅區",x:"散步看美軍老房子、買點心。美軍宿舍改建的白色平房聚落，體驗美式復古與日式文創交織的悠閒氛圍。（建議停車在社區入口或中央的收費投幣停車場）距離名護開車 1 小時",o:[["海鮮・漁師食堂 10:00-21:00","不在港川，要10點前到。網友推甜蝦、海鮮蓋飯、刺身、炸鮪魚排；不推味噌湯；有些要去櫃檯點"],["甜點・oHacorte🌟水果塔 10:30-19:00",""],["咖啡/雜貨・Kozorasou 10:00-17:00",""],["輕食・Cocoroar CAFE 11:00-16:00",""],["麵食・雞湯蔮麥麵屋 10:00-17:00",""],["麵包・ippe-coppe 12:30-17:00",""],["甜點・Houki Boshi 可麗露 11:30-18:00",""]],l:[["漁師食堂 大ばんぶる舞 さかな大統漁","https://maps.app.goo.gl/c1ZQrKeqTMUz5Ksf8?g_st=ic"],["oHacorte 港川店🌟","https://maps.app.goo.gl/sNPf5dSuDy6Wmj8o9?g_st=ic"],["こぞら荘（Kozorasou)","https://maps.app.goo.gl/uUZnSJXBe1ywsmKZA?g_st=ic"],["Cocoroar CAFE","https://maps.app.goo.gl/KDdsczoqgYTAetFY9?g_st=ic"],["雞湯蔮麥麵屋 石工夫","https://maps.app.goo.gl/HwqdFNPFkJHz5xT26?g_st=ic"],["ippe-coppe","https://maps.app.goo.gl/N2swRq3FgSaHBoXr8?g_st=ic"],["Houki Boshi 可麗露 港川本店","https://maps.app.goo.gl/TJCttGrDp9MtzJNr8?g_st=ic"]]},
+ {t:"咖啡",h:"黑糖咖啡 The Sinmay",x:"現刨黑糖咖啡（營業時間 10:00–16:30）",l:[["The Sinmay","https://maps.app.goo.gl/hhxEMxSdm1UmPGm3A?g_st=ic"]]},
+ {t:"下午",h:"古宇利島",x:"跨越古宇利大橋、造訪心形岩，看海放鬆鐵腿"},
+ {t:"18:00 晚餐已預約",h:"昭和居酒屋 北山食堂",x:"極具懷舊沖繩風味",l:[["昭和居酒屋 北山食堂","https://maps.app.goo.gl/1MKcEGEMUzZedwCn6?g_st=ic"]]},
+ {t:"住宿",h:"餘家弗（沖繩餘家弗酒店）",x:"旁邊21世紀之森海灘，面向西邊的名護灣，是名護市區觀賞夕陽的頭號聖地，也可以夜晚海邊漫步，還有新開海景第一排星巴克",l:[["餘家弗 沖繩餘家弗酒店","https://maps.app.goo.gl/bsVn5bZXdc4XiuvJ6?g_st=ic"]]}]},
+
+
+{d:"12/8",w:"二",n:"南下日",s:"搭阿融租的車🚗市區還車、大家解散✨有人返台",items:[{t:"山原",h:"沖繩北部範圍景點",x:"看到就亂列清單而已",o:[["景點・沖繩美麗海水族館 8:30-18:30",""],["海鮮・漁師食堂 本部店 10:00-16:00","網友推薦單點生蠔"],["玉子燒飯糰・福助の玉子焼き  11:00-17:00",""],["塔可餅・和タコス 11:00-18:00",""]],l:[["漁師食堂 大ばんぶる舞 本部店","https://maps.app.goo.gl/kKSBNoCLTvwgVqs2A?g_st=ic"],["福助の玉子焼き 備瀬のフクギ並木店","https://maps.app.goo.gl/4MRPr98uWGXCfBzd8?g_st=ic"],["Kazutako 和タコス","https://maps.app.goo.gl/o7r39ZN8c3zztEKC9?g_st=ic"],
+["沖縄美ら海水族館","https://maps.app.goo.gl/w3juSYGNR72UPi7h8?g_st=ic"]
+]},{t:"白天",h:"自駕南下",x:"中途踩點 "}, {t:"機場",h:"那霸機場",x:"於旭橋站搭單軌電車前往機場（約 12 分鐘）",o:[["15:25 星宇（阿鴻 13:00到那霸市）","航班編號：JX871"],["20:25 華航（瑪莎 18:00到那霸市）","班機編號：CI123"]]}]}
+];
+var PL=[
+{e:"🥬",p:"4,980",n:"島豚套餐",f:"（單點精緻）適合精緻小胃組／不吃牛",r:[["肉品","固定份量 200g（五花與里肌）"],["島蔬菜","自助吧無限供應"],["主食","白飯／沖繩麵／雜炊（三選一）"],["冰淇淋","Blue Seal 6 種口味無限吃到飽"],["前菜","當日一品，一人一份"],["酒水","不含飲料暢飲"]]},
+{e:"🥩",p:"7,380",n:"島しゃぶ堪能套餐",f:"（單點精緻）適合想豬牛雙享的精緻老饕",r:[["肉品","嚴選阿古豬＋特選石垣牛雙拼（固定份量，共 11 品）"],["島蔬菜","自助吧無限供應"],["主食","白飯／沖繩麵／雜炊（三選一）"],["冰淇淋","Blue Seal 6 種口味無限吃到飽"],["前菜","當日一品，一人一份"],["酒水","不含飲料暢飲"]]},
+{e:"👑",p:"10,000 ~ 12,000",n:"頂級A5石垣牛套餐",f:"（單點精緻）適合頂級和牛愛好者",r:[["方案","10,000 日圓壽喜燒風味套餐（嚴選部位）或 12,000 日圓極上套餐（頂級沙朗部位）"],["肉品","最高等級 A5 石垣牛（固定份量）"],["島蔬菜","自助吧無限供應"],["主食","白飯／沖繩麵／雜炊（三選一）"],["冰淇淋","Blue Seal 6 種口味無限吃到飽"],["前菜","當日一品，一人一份"],["酒水","不含飲料暢飲"]]},
+{e:"🍖",p:"5,980",n:"阿古豬純肉吃到飽",f:"適合純大胃王組",r:[["肉品","阿古豬肉片 120 分鐘無限吃到飽"],["主食","白飯 120 分鐘無限吃到飽"],["島蔬菜","自助吧無限供應"],["冰淇淋","Blue Seal 6 種口味無限吃到飽"],["前菜","當日一品，一人一份（無法續）"],["酒水","不含飲料暢飲"]]},
+{e:"🍻",p:"8,180",n:"阿古豬肉狂暢飲包套",f:"適合吃肉酒鬼組",r:[["食物","與 5,980 日圓方案完全相同（肉品／白飯／蔬菜／冰淇淋全吃到飽）"],["酒水","全包含酒水飲料無限暢飲（Orion 生啤酒、泡盛、軟飲），推薦必點招牌粉紅色 Beni 沙瓦"]]}];
+
+function detHtml(){
+  return '<details class="det"><summary>⚠️ 晚餐涮涮鍋方案比較與注意事項</summary><div class="dbody">'
+  +'<div class="dinfo"><b>預約資訊</b>預約人：鄭(Jheng) 秀慧(Molly)／人數：9 人</div>'
+  +'<div class="warn" style="margin:0"><b>⚠️ 提醒</b>18:15 必須到齊才可入座。餐廳規定遲到超過 15 分鐘會被自動取消。用餐限時 120 分鐘。</div>'
+  +'<div class="dinfo"><b>💡 點餐</b>網友推薦阿古豬。要請吃到飽桌在入座前確認；點餐模式同桌必須統一。當天由 Molly 統一結帳，後面再依照各桌方案收款。</div>'
+  +PL.map(function(p){return '<div class="plan"><div class="plan-h"><div class="pn">'+p.e+' '+esc(p.n)+'</div><div class="pp">'+p.p+' 日圓</div><div class="pf">'+esc(p.f)+'</div></div>'+p.r.map(function(r){return '<div class="prow"><span>'+esc(r[0])+'</span><span>'+esc(r[1])+'</span></div>'}).join("")+'</div>'}).join("")
+  +'</div></details>';
+}
+var KEY="naha-marathon-checks",S={},cur=0;
+try{S=JSON.parse(localStorage.getItem(KEY)||"{}")||{}}catch(e){S={}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+var tabs=document.getElementById("tabs"),main=document.getElementById("main");
+function K(i){return i===0?"f":String(i-1)}
+function dayCount(i){var n=0;D[i].items.forEach(function(_,j){if(S[K(i)+"-"+j])n++});return n}
+function progress(){
+  var t=0,c=0;D.forEach(function(d,i){if(d.free)return;t+=d.items.length;c+=dayCount(i)});
+  document.getElementById("ptxt").textContent="旅程進度 "+c+" / "+t;
+  document.getElementById("pbar").style.width=(t?c/t*100:0)+"%";
+}
+function renderTabs(){
+  tabs.innerHTML=D.map(function(d,i){
+    return '<button role="tab" aria-selected="'+(i===cur)+'" data-i="'+i+'"><b>'+d.d+'</b>'+d.n+'</button>'}).join("");
+}
+function render(){
+  var d=D[cur];
+  main.innerHTML='<section class="day"><h2>'+(d.free?esc(d.title):esc(d.d)+' ('+d.w+') '+esc(d.n))+'</h2><p class="theme">'+esc(d.s)+'</p>'
+  +'<span class="done" id="dn"></span>'+(d.note?'<div class="note">'+esc(d.note)+'</div>':'')
+  +'<ul>'+d.items.map(function(it,j){
+    var id=K(cur)+"-"+j,on=!!S[id];
+    return '<li class="'+(on?"on":"")+'"><label><input type="checkbox" data-id="'+id+'"'+(on?" checked":"")+'><span class="txt">'+(it.t?'<span class="time">'+esc(it.t)+'</span>':'')+'<div class="ttl">'+esc(it.h)+'</div>'
+    +(it.x?'<div class="dsc">'+esc(it.x)+'</div>':'')+(it.o?it.o.map(function(o){return '<div class="opt"><b>'+esc(o[0])+'</b>'+esc(o[1])+'</div>'}).join(""):"")+(it.tip?'<div class="tip">💡 時機：'+esc(it.tip)+'</div>':'')+(it.l?'<div class="lks">'+it.l.map(function(k){return '<a href="'+k[1]+'" target="_blank" rel="noopener">📍 '+esc(k[0])+'</a>'}).join("")+'</div>':'')
+    +(it.warn?'<div class="warn"><b>'+esc(it.warn[0])+'</b>'+esc(it.warn[1])+'</div>':'')
+    +'</span></label>'+(it.det?detHtml():'')+'</li>'}).join("")+'</ul></section>';
+  upd();
+}
+function upd(){
+  var e=document.getElementById("dn");
+  if(e)e.textContent="今日完成 "+dayCount(cur)+" / "+D[cur].items.length;
+  progress();
+}
+tabs.addEventListener("click",function(e){
+  var b=e.target.closest("button");if(!b)return;
+  cur=+b.dataset.i;renderTabs();render();window.scrollTo({top:0});
+  var a=tabs.querySelector('[aria-selected="true"]');if(a&&a.scrollIntoView)a.scrollIntoView({inline:"center",block:"nearest"});
+});
+main.addEventListener("change",function(e){
+  var c=e.target;if(!c.dataset||!c.dataset.id)return;
+  if(c.checked)S[c.dataset.id]=1;else delete S[c.dataset.id];
+  c.closest("li").classList.toggle("on",c.checked);save();upd();
+});
+document.getElementById("reset").addEventListener("click",function(){
+  if(!confirm("確定清除所有勾選紀錄？"))return;
+  S={};save();render();
+});
+renderTabs();render();
+</script>
+</body>
+</html>
