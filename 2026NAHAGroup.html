@@ -3,6 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<!-- 禁止搜尋引擎索引 -->
+<meta name="robots" content="noindex, nofollow">
+
 <title>🌺那霸馬拉松行程</title>
 
   <!-- 加上下面這行讓 LINE 抓取專用標題 -->
@@ -49,6 +53,8 @@ nav button{flex:0 0 auto;border:1px solid var(--line);background:var(--surface);
 nav button b{display:block;font-size:16px;color:var(--ink);line-height:1.3}
 nav button[aria-selected="true"]{background:var(--sea);border-color:var(--sea);color:var(--on-sea)}
 nav button[aria-selected="true"] b{color:var(--on-sea)}
+nav .ck{display:none;font-style:normal;font-size:12px;margin-left:3px}
+nav button.done .ck{display:inline}
 nav button:focus-visible,label:focus-within{outline:2px solid var(--lagoon);outline-offset:2px}
 .day{padding:20px 16px 0}
 .day h2{margin:0;font-size:20px}
@@ -82,14 +88,17 @@ li.on .ttl{text-decoration:line-through;text-decoration-color:var(--lagoon);colo
 li.has-sub{background:var(--surface);border:1px solid var(--line);border-radius:16px}
 li.has-sub>label{border:0;background:transparent}
 .sub{margin:0 14px 14px 50px}
-.sbody{display:grid;gap:2px;margin-top:4px}
-.subh{display:block;list-style:none;cursor:pointer;font-size:15px;color:var(--ink);font-weight:500;padding:4px 0}
+.sbody{display:grid;gap:0;margin-top:2px}
+.subh{display:block;list-style:none;cursor:pointer;font-size:14px;color:var(--ink);font-weight:500;padding:4px 0}
 .subh::-webkit-details-marker{display:none}
 .subh::after{content:"▾";float:right;color:var(--sub);transition:transform .2s}
 .sub:not([open]) .subh::after{transform:rotate(-90deg)}.subh b{color:var(--sea)}
-.sl{display:flex;align-items:center;gap:10px;padding:7px 0;border:0;border-radius:0;background:transparent;font-size:14px;cursor:pointer}
+.sl{display:flex;align-items:center;gap:10px;padding:3px 0;border:0;border-radius:0;background:transparent;font-size:13px;color:var(--sub);cursor:pointer}
 .sl input{flex:0 0 20px;width:20px;height:20px;margin:0;border-radius:6px}
 .sl.on span{text-decoration:line-through;text-decoration-color:var(--lagoon);color:var(--sub)}
+#toTop{position:fixed;right:16px;bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:15;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--sea);color:var(--on-sea);display:grid;place-content:center;padding:0;cursor:pointer;box-shadow:0 4px 14px rgba(10,60,100,.25);opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .25s,transform .25s}
+#toTop.show{opacity:1;transform:none;pointer-events:auto}
+#toTop:focus-visible{outline:2px solid var(--lagoon);outline-offset:3px}
 .opt{margin-top:6px;font-size:13px;color:var(--sub)}.opt b{display:block;color:var(--ink);font-weight:500}
 .det{margin-top:8px;border:1px solid var(--warn-line);border-radius:16px;background:var(--bg);overflow:hidden}
 .det summary{padding:12px 14px;font-weight:500;font-size:14px;cursor:pointer;color:var(--warn-ink);background:var(--warn-bg);list-style:none}
@@ -116,6 +125,7 @@ li.has-sub>label{border:0;background:transparent}
 <main id="main"></main>
 <button class="reset" id="reset">清除所有勾選</button>
 </div>
+<button id="toTop" type="button" aria-label="回到頂部"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
 <script>
 var D=[
 
@@ -126,9 +136,8 @@ var D=[
  {t:"散策",h:"壺屋陶瓷街",x:"全長約400公尺，鋪滿了琉球石灰岩石板路，兩旁保留了紅瓦古民家、石牆與歷史悠久的登窯。路上也很多小店、咖啡",l:[["那覇市立壺屋焼物博物館","https://maps.app.goo.gl/ait3f6JJekkm8JWA7?g_st=ic"]]},
  {t:"散策、土產",h:"國際通",x:"各式沖繩黑糖、御菓子御殿紅芋塔、吉祥物限定商品。",tip:"隨時只要有走到國際通，看哪一家順眼就可以直接進去逛。",l:[["沖繩特色美食","https://visitokinawajapan.com/zh-hant/travel-inspiration/must-try-okinawa-street-foods/"],["那霸伴手禮推薦清單","https://www.lotofjapan.com/pages/okinawaomiyage"],["推薦真的好吃的伴零食","https://www.threads.com/share/_osOkD3_x"]]},
 {t:"潮間帶",h:"PARCO CITY",x:"可能太緊湊😣早起退潮前後2小時去隔壁的潮間帶。不要進去PARCO CITY，會出不來",l:[["PARCO CITY 浦添西海岸","https://maps.app.goo.gl/bo9qh7zWMFU6nGfa9?g_st=ic"],["沖繩PARCO是什麼無限城","https://www.threads.com/share/BAV6xdRMJ1"],["PARCO旁邊的潮間帶","https://www.instagram.com/reel/DXbhEwYEkF5"],["Okinawa潮汐漲退時間表","https://zh.tideschart.com/Japan/Okinawa/"]]},
-{t:"超市",h:"沖繩必買想買調味料&食材",x:"網友推薦分享，買了就打勾放進購物籃",ch:"購物籃",c:["鹽昆布（居然在藥妝店買到）","堀西萬能調味粉香檸口味（超難找）","セイワ食品 島辣椒粉（謝謝脆友分享5個買點）","石垣島辣油（失策 吃辣的人應該買激辛）","沖繩海鹽 地瓜🍠檸檬🍋火龍果","沖繩限定調味海帶芽","塩醬油 / 塩柚子醋","水雲& 醬汁","醃漬海葡萄","久米島蒜頭胡椒醬（曾榮獲 2022 沖繩島風味大獎賽）","牡蠣醬油🦪"],l:[["沖繩必買想買調味料&食材","https://www.threads.com/share/BAQxoO_2n6"]]},
-{t:"補貨",h:"歌町 Omoromachi おもろまち",x:"逛街購物補貨",l:[["目利きの銀次 新都心本舗","https://maps.app.goo.gl/ZhTUCCDv3vu9r8p9A?g_st=ic"],["ユニクロ サンエー那覇メインプレイス店","https://maps.app.goo.gl/pXcs5pxjMuxjKNaw9?g_st=ic"],["A","https://maps.app.goo.gl/pXcs5pxjMuxjKNaw9?g_st=ic"],["A","https://maps.app.goo.gl/pXcs5pxjMuxjKNaw9?g_st=ic"]
-]},{t:"夜間活動",h:"",x:"",o:[["明治橋・那霸港夕陽或夜景","眺望遠方那霸西道路高架橋與港口起重機的夜間燈火"],["那霸埠頭旅客碼頭","著名的「大型民謠餐船（Moby Dick）」停靠，安全的親水步道日劇港灣風景"],["歌舞秀・Charusan 6 20:00-午夜","表演精彩並非想像中的成人秀"],["天空酒吧 AUGUST MOON・高空露台酒吧 16:00-午夜",""]],l:[["明治橋","https://maps.app.goo.gl/uDzbpmrkhkzfcexL9?g_st=ic"],["那霸埠頭旅客碼頭","https://maps.app.goo.gl/bPj2asP3mRRNNZtX8?g_st=ic"],["Charusan 6 ちゅらさん6沖縄","https://maps.app.goo.gl/dcc2UpvzchA4yU997?g_st=ic"],["天空酒吧","https://maps.app.goo.gl/V6eUTGzAPGAetTvp8?g_st=ic"]]},{t:"其他地鐵站",h:"",x:"",o:[["首里站","首里城、達摩寺"],["安里站","榮町市場"]],l:[["西來院 達摩寺","https://maps.app.goo.gl/WxiHGSQ9afkfJcws7?g_st=ic"],["榮町市場","https://maps.app.goo.gl/FNGFXeDeHt182Jd27?g_st=ic"]]
+{t:"超市",h:"沖繩必買想買調味料&食材",x:"網友推薦分享，買了就打勾放進購物籃",ch:"購物籃",c:["鹽昆布","堀西萬能調味粉香檸口味","セイワ食品 島辣椒粉","石垣島辣油","沖繩海鹽 地瓜🍠檸檬🍋火龍果","沖繩限定調味海帶芽","塩醬油 / 塩柚子醋","水雲& 醬汁","醃漬海葡萄","久米島蒜頭胡椒醬","牡蠣醬油🦪"],l:[["沖繩必買想買調味料&食材","https://www.threads.com/share/BAQxoO_2n6"]]},
+{t:"補貨",h:"歌町 Omoromachi おもろまち",x:"逛街購物補貨",l:[["目利きの銀次 新都心本舗","https://maps.app.goo.gl/ZhTUCCDv3vu9r8p9A?g_st=ic"],["ユニクロ サンエー那覇メインプレイス店","https://maps.app.goo.gl/pXcs5pxjMuxjKNaw9?g_st=ic"]]},{t:"夜間活動",h:"",x:"",o:[["明治橋・那霸港夕陽或夜景","眺望遠方那霸西道路高架橋與港口起重機的夜間燈火"],["那霸埠頭旅客碼頭","著名的「大型民謠餐船（Moby Dick）」停靠，安全的親水步道日劇港灣風景"],["歌舞秀・Charusan 6 20:00-午夜","表演精彩並非想像中的成人秀"],["天空酒吧 AUGUST MOON・高空露台酒吧 16:00-午夜",""]],l:[["明治橋","https://maps.app.goo.gl/uDzbpmrkhkzfcexL9?g_st=ic"],["那霸埠頭旅客碼頭","https://maps.app.goo.gl/bPj2asP3mRRNNZtX8?g_st=ic"],["Charusan 6 ちゅらさん6沖縄","https://maps.app.goo.gl/dcc2UpvzchA4yU997?g_st=ic"],["天空酒吧","https://maps.app.goo.gl/V6eUTGzAPGAetTvp8?g_st=ic"]]},{t:"其他地鐵站",h:"",x:"",o:[["首里站","首里城、達摩寺"],["安里站","榮町市場"]],l:[["西來院 達摩寺","https://maps.app.goo.gl/WxiHGSQ9afkfJcws7?g_st=ic"],["榮町市場","https://maps.app.goo.gl/FNGFXeDeHt182Jd27?g_st=ic"]]
 }
 ]},
 
@@ -205,14 +214,29 @@ function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;
 var tabs=document.getElementById("tabs"),main=document.getElementById("main");
 function K(i){return i===0?"f":String(i-1)}
 function dayCount(i){var n=0;D[i].items.forEach(function(_,j){if(S[K(i)+"-"+j])n++});return n}
+function dayTotals(i){
+  var t=0,c=0;
+  D[i].items.forEach(function(it,j){
+    var id=K(i)+"-"+j;t++;if(S[id])c++;
+  });
+  return [c,t];
+}
+function dayDone(i){var r=dayTotals(i);return r[1]>0&&r[0]===r[1]}
+function markTabs(){
+  Array.prototype.forEach.call(tabs.querySelectorAll("button"),function(b){
+    var i=+b.dataset.i,ok=dayDone(i);
+    b.classList.toggle("done",ok);
+    b.setAttribute("aria-label",D[i].d+" "+D[i].n+(ok?"（已完成）":""));
+  });
+}
 function progress(){
-  var t=0,c=0;D.forEach(function(d,i){if(d.free)return;t+=d.items.length;c+=dayCount(i)});
-  document.getElementById("ptxt").textContent="旅程進度 "+c+" / "+t;
+  var r=dayTotals(cur),c=r[0],t=r[1],d=D[cur];
+  document.getElementById("ptxt").textContent=(d.free?d.n:d.d)+" 進度 "+c+" / "+t;
   document.getElementById("pbar").style.width=(t?c/t*100:0)+"%";
 }
 function renderTabs(){
   tabs.innerHTML=D.map(function(d,i){
-    return '<button role="tab" aria-selected="'+(i===cur)+'" data-i="'+i+'"><b>'+d.d+'</b>'+d.n+'</button>'}).join("");
+    return '<button role="tab" aria-selected="'+(i===cur)+'" data-i="'+i+'"><b>'+d.d+'</b>'+d.n+'<i class="ck" aria-hidden="true">✅</i></button>'}).join("");
 }
 function render(){
   var d=D[cur];
@@ -228,8 +252,8 @@ function render(){
 }
 function upd(){
   var e=document.getElementById("dn");
-  if(e)e.textContent="今日完成 "+dayCount(cur)+" / "+D[cur].items.length;
-  progress();
+  if(e){var r=dayTotals(cur);e.textContent="今日完成 "+r[0]+" / "+r[1]}
+  progress();markTabs();
 }
 function lkIco(k){
   var t=k[2]||(/maps\.app\.goo\.gl|goo\.gl\/maps|google\.[a-z.]+\/maps|maps\.google/.test(k[1])?"map":"link");
@@ -245,7 +269,7 @@ main.addEventListener("change",function(e){
   if(c.checked)S[c.dataset.sid]=1;else delete S[c.dataset.sid];
   c.closest(".sl").classList.toggle("on",c.checked);
   var box=c.closest(".sub");box.querySelector(".subh b").textContent=box.querySelectorAll("input:checked").length+" / "+box.dataset.n;
-  save();
+  save();upd();
 });
 tabs.addEventListener("click",function(e){
   var b=e.target.closest("button");if(!b)return;
@@ -261,7 +285,22 @@ document.getElementById("reset").addEventListener("click",function(){
   if(!confirm("確定清除所有勾選紀錄？"))return;
   S={};save();render();
 });
+/* 自動定位今天：日期落在行程內就直接開啟那一天（僅限 2026 年），否則維持預設頁籤 */
+(function(){
+  var n=new Date();if(n.getFullYear()!==2026)return;
+  D.forEach(function(d,i){var m=/^(\d+)\/(\d+)$/.exec(d.d);
+    if(m&&+m[1]===n.getMonth()+1&&+m[2]===n.getDate())cur=i});
+})();
 renderTabs();render();
+(function(){var a=tabs.querySelector('[aria-selected="true"]');if(a)tabs.scrollLeft=a.offsetLeft-(tabs.clientWidth-a.offsetWidth)/2})();
+/* 回到頂部按鈕：往下捲超過 300px 才出現 */
+var topBtn=document.getElementById("toTop");
+function onScroll(){topBtn.classList.toggle("show",(window.pageYOffset||document.documentElement.scrollTop)>300)}
+window.addEventListener("scroll",onScroll,{passive:true});onScroll();
+topBtn.addEventListener("click",function(){
+  var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion:reduce)").matches;
+  window.scrollTo({top:0,behavior:reduce?"auto":"smooth"});
+});
 </script>
 </body>
 </html>
