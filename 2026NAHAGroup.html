@@ -283,12 +283,12 @@ function progress(){
       s=new Date(TRIP.s[0],TRIP.s[1]-1,TRIP.s[2]),e=new Date(TRIP.e[0],TRIP.e[1]-1,TRIP.e[2]),
       DAY=86400000,total=Math.round((e-s)/DAY)+1,txt,pct;
   if(t0<s){
-    txt="📅 倒數 "+Math.round((s-t0)/DAY)+" 天旅程開始";pct=0;
+    txt="📅 倒數 "+Math.round((s-t0)/DAY)+" 天，旅程即將開始！";pct=0;
   }else if(t0<=e){
     var day=Math.round((t0-s)/DAY)+1;
     txt="🧳 旅行中・Day "+day+"（第 "+day+" 天 / 共 "+total+" 天）";pct=day/total*100;
   }else{
-    txt="🏠 旅程圓滿結束・回到溫暖的家（已結束 "+Math.round((t0-e)/DAY)+" 天）";pct=100;
+    txt="🏠 旅程圓滿結束，回到溫暖的家（已結束 "+Math.round((t0-e)/DAY)+" 天）";pct=100;
   }
   document.getElementById("ptxt").textContent=txt;
   document.getElementById("pbar").style.width=pct+"%";
