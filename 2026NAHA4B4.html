@@ -217,7 +217,7 @@ l:[["あさとん食堂","https://maps.app.goo.gl/G81ffwVMfFH2qk4P6?g_st=ic"],["
 ]},
 
 
-{d:"12/8",w:"二",n:"南下日",s:"搭阿融租的車🚗市區還車、大家解散✨有人返台",items:[{t:"白天",h:"南下",tip:"暈車藥",x:"中途踩點 好像「道の駅」也不錯",l:[["泊港漁市場 泊いゆまち","https://maps.app.goo.gl/YWqebyDNeQm18GFo6?g_st=ic"],["おんなの駅 なかゆくい市場","https://maps.app.goo.gl/oYnL1JEd1a2LQqLe8?g_st=ic"],["許田休息站 やんばる物産センター","https://maps.app.goo.gl/yETuzapGJTUrsfsv6?g_st=ic"],["名護市営市場","https://maps.app.goo.gl/7ffT5koUWhphXSb7A?g_st=ic"]]}, {t:"機場",h:"那霸機場",x:"於旭橋站搭單軌電車前往機場（約 12 分鐘）",o:[["15:25 星宇（阿鴻 13:00到那霸市）","航班編號：JX871"],["20:25 華航（瑪莎 18:00到那霸市）","班機編號：CI123"]]},{t:"check-in",h:"",l:[["PRIME TREE Izumizaki CONDO HOTEL","https://maps.app.goo.gl/Vr2EiM7j2vHLHHmR9?g_st=ic"],["Kohala Hotel PRIME TREE Izumizaki CONDO HOTEL","https://maps.app.goo.gl/ZVCM86PdyfxYKJoL6?g_st=ic"]]}
+{d:"12/8",w:"二",n:"南下日",s:"南下解散日・有人返台",items:[{t:"白天",h:"南下",tip:"暈車藥",x:"中途踩點 好像「道の駅」也不錯",l:[["泊港漁市場 泊いゆまち","https://maps.app.goo.gl/YWqebyDNeQm18GFo6?g_st=ic"],["おんなの駅 なかゆくい市場","https://maps.app.goo.gl/oYnL1JEd1a2LQqLe8?g_st=ic"],["許田休息站 やんばる物産センター","https://maps.app.goo.gl/yETuzapGJTUrsfsv6?g_st=ic"],["名護市営市場","https://maps.app.goo.gl/7ffT5koUWhphXSb7A?g_st=ic"]]}, {t:"機場",h:"那霸機場",x:"於旭橋站搭單軌電車前往機場（約 12 分鐘）",o:[["15:25 星宇（阿鴻 13:00到那霸市）","航班編號：JX871"],["20:25 華航（瑪莎 18:00到那霸市）","班機編號：CI123"]]},{t:"check-in",h:"",l:[["PRIME TREE Izumizaki CONDO HOTEL","https://maps.app.goo.gl/Vr2EiM7j2vHLHHmR9?g_st=ic"],["Kohala Hotel PRIME TREE Izumizaki CONDO HOTEL","https://maps.app.goo.gl/ZVCM86PdyfxYKJoL6?g_st=ic"]]}
 ]},
 
 {d:"12/9",w:"三",n:"南部日",s:"南部自然與漁村漫步",items:[
@@ -304,7 +304,7 @@ function progress(){
       s=new Date(TRIP.s[0],TRIP.s[1]-1,TRIP.s[2]),e=new Date(TRIP.e[0],TRIP.e[1]-1,TRIP.e[2]),
       DAY=86400000,total=Math.round((e-s)/DAY)+1,txt,pct;
   if(t0<s){
-    txt="📅 倒數 "+Math.round((s-t0)/DAY)+" 天開始旅程";pct=0;
+    txt="📅 倒數 "+Math.round((s-t0)/DAY)+" 天旅程開始";pct=0;
   }else if(t0<=e){
     var day=Math.round((t0-s)/DAY)+1;
     txt="🧳 旅行中・Day "+day+"（第 "+day+" 天 / 共 "+total+" 天）";pct=day/total*100;
