@@ -11,7 +11,7 @@
 
   <!-- 加上下面這行讓 LINE 抓取專用標題 -->
   <meta property="og:title" content="🌺沖繩那霸馬拉松行程">
-  <meta property="og:description" content="2026那霸馬拉松之旅 12/4 - 12/11">
+  <meta property="og:description" content="2026那霸馬拉松之旅 12/4 - 12/8">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
@@ -149,7 +149,7 @@ li.has-sub>label{border:0;background:transparent;box-shadow:none}
 <div class="wrap">
 <header>
   <h1>那霸馬拉松行程</h1>
-  <p>12/4 – 12/11・沖繩那霸</p>
+  <p>12/4 – 12/8・沖繩那霸</p>
   <div class="prog"><span id="ptxt"></span><div class="bar"><i id="pbar"></i></div></div>
 </header>
 <svg class="wave" viewBox="0 0 520 22" preserveAspectRatio="none" aria-hidden="true"><path d="M0 22V10C60 0 110 0 170 8s120 12 180 3 110-9 170 0v11z" fill="currentColor"/></svg>
@@ -229,7 +229,7 @@ l:[["あさとん食堂","https://maps.app.goo.gl/G81ffwVMfFH2qk4P6?g_st=ic"],["
 ]},
 
 {d:"📝",w:"",n:"小抄",free:1,title:"📝 小抄筆記",s:"方便旅行的一些事情",items:[
-{t:"退稅",h:"免稅",x:" ",l:[["りっかりっか湯","https://maps.app.goo.gl/M5AAHkf6L5Y6VK9BA?g_st=ic"]]},
+{t:"退稅",h:"免稅",x:" ",l:[["退稅制度","https://linshibi.com/?p=48616"]]},
 ]}
 
 ];
@@ -277,7 +277,7 @@ function markTabs(){
   });
 }
 /* 頂部進度：依手機目前日期自動切換（尚未出發／旅遊中／已結束）。要改旅行日期只改下面一行 */
-var TRIP={s:[2026,12,4],e:[2026,12,11]};
+var TRIP={s:[2026,12,4],e:[2026,12,8]};
 function progress(){
   var now=new Date(),t0=new Date(now.getFullYear(),now.getMonth(),now.getDate()),
       s=new Date(TRIP.s[0],TRIP.s[1]-1,TRIP.s[2]),e=new Date(TRIP.e[0],TRIP.e[1]-1,TRIP.e[2]),
