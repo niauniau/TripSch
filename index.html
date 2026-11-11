@@ -14,38 +14,52 @@
 :root{
   box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
   color-scheme:light;
-  --bg:#fff;--surface:#f3fafd;--line:#d6ebf5;--ink:#0b2f4a;--sub:#4f7388;
-  --sea:#0a73b8;--lagoon:#32b5d8;--sea-soft:#e1f3fb;--on-sea:#fff;
+  --bg:#FAF8F5;--paper:#FFFFFF;--ink:#1E293B;--sub:#64748B;--line:#E6EAEF;--line2:#D3DBE3;
+  --sea:#4F7F97;--sea-soft:#EAF2F6;--on-sea:#FFFFFF;--hd1:#4F7F97;--hd2:#7BA9BD;
+  --sand:#F1E8DC;--sand-ink:#8A6D49;--tip-bg:#F7F3EC;--tip-line:#EDE4D6;
+  --shadow:0 1px 2px rgba(30,41,59,.05),0 4px 14px rgba(30,41,59,.05);
 }
 @media (prefers-color-scheme:dark){
-  :root{color-scheme:dark;--bg:#07202f;--surface:#0c2d42;--line:#17435e;--ink:#e8f5fc;--sub:#92b8cc;--sea:#4db4ea;--lagoon:#5fd0ea;--sea-soft:#10405c;--on-sea:#04202f}
+  :root{
+    color-scheme:dark;
+    --bg:#0F1A22;--paper:#16242E;--ink:#E5EDF3;--sub:#9AAFBD;--line:#24394A;--line2:#2F4658;
+    --sea:#7FB0C8;--sea-soft:#1A3342;--on-sea:#0F1A22;--hd1:#24506A;--hd2:#3C6E86;
+    --sand:#2D2A24;--sand-ink:#D8BE98;--tip-bg:#1D2A33;--tip-line:#2A3B47;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 4px 14px rgba(0,0,0,.25);
+  }
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans TC",-apple-system,"PingFang TC","Microsoft JhengHei",sans-serif;line-height:1.6}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans TC",-apple-system,"PingFang TC","Microsoft JhengHei",sans-serif;font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased}
 .wrap{max-width:520px;margin:0 auto;padding-bottom:40px}
-header{padding:36px 22px 26px;background:linear-gradient(170deg,var(--sea) 0%,var(--lagoon) 100%);color:#fff}
-header h1{margin:0;font-size:26px;font-weight:700;letter-spacing:.02em}
-header p{margin:4px 0 0;font-size:14px;opacity:.92}
+
+/* header */
+header{padding:32px 22px 22px;background:linear-gradient(165deg,var(--hd1) 0%,var(--hd2) 100%);color:#fff}
+header h1{margin:0;font-size:24px;font-weight:700;letter-spacing:.04em}
+header p{margin:4px 0 0;font-size:13.5px;opacity:.9;letter-spacing:.02em}
 svg.wave{display:block;width:100%;height:22px;margin-top:-1px;color:var(--bg)}
-h2{margin:22px 20px 4px;font-size:15px;color:var(--sub);font-weight:500}
-.list{display:grid;gap:12px;padding:10px 16px 0}
-.card{display:flex;align-items:center;gap:14px;padding:16px;border:1px solid var(--line);border-radius:20px;background:var(--surface);color:inherit;text-decoration:none;transition:transform .15s,border-color .15s}
+
+h2{margin:24px 20px 8px;font-size:14px;color:var(--sub);font-weight:600;letter-spacing:.03em}
+.list{display:grid;gap:12px;padding:0 16px}
+
+/* cards */
+.card{display:flex;align-items:center;gap:14px;padding:15px 16px;border:1px solid var(--line);border-radius:16px;background:var(--paper);color:inherit;text-decoration:none;box-shadow:var(--shadow);transition:transform .15s,border-color .15s,box-shadow .15s}
 .card:active{transform:scale(.98)}
-.card:hover{border-color:var(--lagoon)}
-.card:focus-visible{outline:2px solid var(--lagoon);outline-offset:2px}
-.ico{flex:0 0 52px;height:52px;border-radius:16px;background:var(--sea-soft);display:grid;place-content:center;font-size:26px}
+.card:hover{border-color:var(--sea);box-shadow:0 4px 16px rgba(79,127,151,.12)}
+.card:focus-visible{outline:2px solid var(--sea);outline-offset:2px}
+.ico{flex:0 0 48px;height:48px;border-radius:14px;background:var(--sea-soft);display:grid;place-content:center;font-size:24px}
 .info{min-width:0;flex:1}
-.ttl{font-weight:700;font-size:16px}
-.meta{font-size:13px;color:var(--sub);margin-top:1px}
-.tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}.tag{display:inline-block;padding:1px 10px;border-radius:99px;background:var(--sea-soft);color:var(--sea);font-size:12px;font-weight:500}
+.ttl{font-weight:600;font-size:15.5px}
+.meta{font-size:13px;color:var(--sub);margin-top:2px}
+.tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:6px}
+.tag{display:inline-block;padding:1px 9px;border-radius:99px;background:var(--sand);color:var(--sand-ink);font-size:11.5px;font-weight:500}
+
 button.card{width:100%;margin:0;font:inherit;text-align:left;cursor:pointer;-webkit-appearance:none;appearance:none}
-.locked .go{font-size:13px;opacity:.55}
 .toast{position:fixed;left:50%;bottom:calc(28px + env(safe-area-inset-bottom,0px));transform:translate(-50%,16px);background:var(--ink);color:var(--bg);padding:10px 20px;border-radius:99px;font-size:14px;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;z-index:20}
 .toast.show{opacity:1;transform:translate(-50%,0)}
-.go{color:var(--sea);font-size:20px}
+.go{color:var(--sea);font-size:18px;font-weight:500}
 .empty{padding:24px 20px;color:var(--sub);font-size:14px;text-align:center}
-footer{margin-top:28px;text-align:center;font-size:12px;color:var(--sub)}
+footer{margin-top:36px;text-align:center;font-size:12px;color:var(--sub)}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
@@ -53,31 +67,22 @@ footer{margin-top:28px;text-align:center;font-size:12px;color:var(--sub)}
 <div class="wrap">
 <header>
   <h1>🧳 旅遊紀錄</h1>
-  <p>歷史行程的紀錄</p>
+  <p>旅行的足跡</p>
 </header>
 <svg class="wave" viewBox="0 0 520 22" preserveAspectRatio="none" aria-hidden="true"><path d="M0 22V10C60 0 110 0 170 8s120 12 180 3 110-9 170 0v11z" fill="currentColor"/></svg>
 
 <main id="app"></main>
 <noscript><p class="empty">個人旅行紀錄</p></noscript>
 
-<footer style="text-align: center; font-size: 12px; color: #999; margin-top: 60px; padding-bottom: 20px;">
+<footer>
   <p>© 2026-PRESENT Niauniau. All rights reserved.</p>
 </footer>
 </div>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>
-
-
-/* 之後新增旅遊行程，只要在這個清單加一筆即可。
-   group：分區標題（同一個 group 會排在一起）
-   icon：圖示  title：行程名稱  meta：日期／地點  tag：小標籤（可省略；多個標籤用陣列，例如 tag:["路跑","朋友"]）
-   href：行程網頁檔名（不填＝未公開，點下去會跳出「未公開」，可用 msg:"自訂文字" 改訊息）（放在同一個資料夾）  */
-
-
 var TRIPS=[
-
-{group:"✈️ 2026",icon:"🏃🏻‍♀️",title:"2026那霸馬拉松行程",meta:"12/4 – 12/8・那霸馬拉松團體活動日",tag:["路跑","朋朋"],href:"2026NAHAGroup.html"}
+{group:"✈️ 2026",icon:"🏃🏻‍♀️",title:"2026那霸馬拉松行程",meta:"12/4 – 12/8・那霸馬拉松團體活動日",tag:["路跑","朋朋"],href:"InProcessCsh_3.html"}
 ,{group:"✈️ 2026",icon:"🎶",title:"2026首爾NOL FESTIVAL",meta:"10/16 – 10/19",tag:["追星","朋朋"]}  
 ,{group:"✈️ 2026",icon:"🎶",title:"2026首爾ATA FESTIVAL",meta:"9/18 - 9/22",tag:["追星"]}
 ,{group:"✈️ 2026",icon:"🇯🇵",title:"名古屋中部新穗高",meta:"2/27 - 3/3",tag:["朋朋"]}
@@ -91,7 +96,6 @@ var TRIPS=[
 ,{group:"✈️ 2024",icon:"🇯🇵",title:"九州熊本",meta:"1/20 - 1/26",tag:"朋朋"}
 
 ,{group:"✈️ 2023",icon:"🇯🇵",title:"關東神奈川橫濱",meta:"10/19 - 10/28",tag:["初次"]}
-
 ];
 
 function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
