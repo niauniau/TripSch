@@ -21,7 +21,7 @@
   color-scheme:light;
   --bg:#FAF8F5;--paper:#FFFFFF;--ink:#1E293B;--sub:#64748B;--line:#E6EAEF;--line2:#D3DBE3;
   --sea:#4F7F97;--sea-soft:#EAF2F6;--on-sea:#FFFFFF;--hd1:#4F7F97;--hd2:#7BA9BD;
-  --sand:#F1E8DC;--sand-ink:#8A6D49;--tip-bg:#F7F3EC;--tip-line:#EDE4D6;
+  --sand:#F1E8DC;--sand-ink:#8A6D49;--tip-bg:#FBF3E4;--tip-line:#EFDDB9;
   --warn-bg:#FBF3E4;--warn-ink:#7A5B1E;--warn-line:#EFDDB9;
   --shadow:0 1px 2px rgba(30,41,59,.05),0 4px 14px rgba(30,41,59,.05);
 }
@@ -86,6 +86,7 @@ input[type=checkbox]:checked::after{transform:rotate(45deg) scale(1)}
 .dsc{font-size:13px;color:var(--sub);margin-top:2px}
 li.on .ttl{text-decoration:line-through;text-decoration-color:var(--line2);color:var(--sub)}
 .opt{margin-top:6px;font-size:13px;color:var(--sub)}.opt b{display:block;color:var(--ink);font-weight:500}
+/* .tip 樣式 */
 .tip{margin-top:8px;padding:8px 10px;border-radius:10px;background:var(--tip-bg);border:1px solid var(--tip-line);font-size:12.5px}
 .lks{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
 .lks a{font-size:12px;color:var(--sea);background:var(--sea-soft);border-radius:99px;padding:2px 11px;text-decoration:none;font-weight:500}
@@ -325,7 +326,7 @@ function render(){
   +'<ul>'+d.items.map(function(it,j){
     var id=IK(cur,j),on=!!S[id];
     return '<li class="'+(on?"on":"")+(it.c?" has-sub":"")+'"><label><input type="checkbox" data-id="'+id+'"'+(on?" checked":"")+'><span class="txt">'+(it.t?'<span class="time">'+esc(it.t)+'</span>':'')+'<div class="ttl">'+esc(it.h)+'</div>'
-    +(it.x?'<div class="dsc">'+esc(it.x)+'</div>':'')+(it.o?it.o.map(function(o){return '<div class="opt"><b>'+esc(o[0])+'</b>'+esc(o[1])+'</div>'}).join(""):"")+(it.tip?'<div class="tip">💡 Tip：'+esc(it.tip)+'</div>':'')+((it.m||it.l)?'<div class="lks">'+(it.m||[]).map(function(k){return [k[0],k[1],"map"]}).concat(it.l||[]).map(function(k){return '<a href="'+k[1]+'" target="_blank" rel="noopener">'+lkIco(k)+' '+esc(k[0])+'</a>'}).join("")+'</div>':'')
+    +(it.x?'<div class="dsc">'+esc(it.x)+'</div>':'')+(it.o?it.o.map(function(o){return '<div class="opt"><b>'+esc(o[0])+'</b>'+esc(o[1])+'</div>'}).join(""):"")+(it.tip?'<div class="tip">💡'+esc(it.tip)+'</div>':'')+((it.m||it.l)?'<div class="lks">'+(it.m||[]).map(function(k){return [k[0],k[1],"map"]}).concat(it.l||[]).map(function(k){return '<a href="'+k[1]+'" target="_blank" rel="noopener">'+lkIco(k)+' '+esc(k[0])+'</a>'}).join("")+'</div>':'')
     +(it.warn?'<div class="warn"><b>'+esc(it.warn[0])+'</b>'+esc(it.warn[1])+'</div>':'')
     +'</span></label>'+(it.det?detHtml():'')+(it.c?subHtml(id,it):'')+'</li>'}).join("")+'</ul></section>';
   upd();
