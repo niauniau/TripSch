@@ -19,120 +19,157 @@
 :root{
   box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
   color-scheme:light;
-  --bg:#fff;--surface:#f3fafd;--line:#d6ebf5;--ink:#0b2f4a;--sub:#4f7388;
-  --sea:#0a73b8;--lagoon:#32b5d8;--sea-soft:#e1f3fb;--warn-bg:#fff4e0;--warn-ink:#7a4a00;--warn-line:#f2c777;--on-sea:#fff;
+  --bg:#FAF8F5;--paper:#FFFFFF;--ink:#1E293B;--sub:#64748B;--line:#E6EAEF;--line2:#D3DBE3;
+  --sea:#4F7F97;--sea-soft:#EAF2F6;--on-sea:#FFFFFF;--hd1:#4F7F97;--hd2:#7BA9BD;
+  --sand:#F1E8DC;--sand-ink:#8A6D49;--tip-bg:#F7F3EC;--tip-line:#EDE4D6;
+  --warn-bg:#FBF3E4;--warn-ink:#7A5B1E;--warn-line:#EFDDB9;
+  --shadow:0 1px 2px rgba(30,41,59,.05),0 4px 14px rgba(30,41,59,.05);
 }
 @media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){
-    color-scheme:dark;--bg:#07202f;--surface:#0c2d42;--line:#17435e;--ink:#e8f5fc;--sub:#92b8cc;
-    --sea:#4db4ea;--lagoon:#5fd0ea;--sea-soft:#10405c;--warn-bg:#3a2d10;--warn-ink:#ffd48a;--warn-line:#7a5a1c;--on-sea:#04202f;
+  :root{
+    color-scheme:dark;
+    --bg:#0F1A22;--paper:#16242E;--ink:#E5EDF3;--sub:#9AAFBD;--line:#24394A;--line2:#2F4658;
+    --sea:#7FB0C8;--sea-soft:#1A3342;--on-sea:#0F1A22;--hd1:#24506A;--hd2:#3C6E86;
+    --sand:#2D2A24;--sand-ink:#D8BE98;--tip-bg:#1D2A33;--tip-line:#2A3B47;
+    --warn-bg:#3A2F17;--warn-ink:#F0CF8C;--warn-line:#5D4A21;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 4px 14px rgba(0,0,0,.25);
   }
 }
-:root[data-theme="dark"]{
-  color-scheme:dark;--bg:#07202f;--surface:#0c2d42;--line:#17435e;--ink:#e8f5fc;--sub:#92b8cc;
-  --sea:#4db4ea;--lagoon:#5fd0ea;--sea-soft:#10405c;--warn-bg:#3a2d10;--warn-ink:#ffd48a;--warn-line:#7a5a1c;--on-sea:#04202f;
-}
+*,*::before,*::after{box-sizing:inherit;-webkit-tap-highlight-color:transparent}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
-*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans TC",-apple-system,"PingFang TC","Microsoft JhengHei",sans-serif;line-height:1.6}
-.wrap{max-width:520px;margin:0 auto;padding-bottom:48px}
-header{padding:28px 20px 22px;background:linear-gradient(170deg,var(--sea) 0%,var(--lagoon) 100%);color:#fff;position:relative;overflow:hidden}
-header h1{margin:0;font-size:24px;font-weight:700;letter-spacing:.02em}
-header p{margin:4px 0 0;font-size:14px;opacity:.92}
-.prog{margin-top:18px;font-size:13px}
-.bar{height:6px;border-radius:99px;background:rgba(255,255,255,.3);margin-top:6px;overflow:hidden}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Noto Sans TC",-apple-system,"PingFang TC","Microsoft JhengHei",sans-serif;font-size:15px;line-height:1.65;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+.wrap{max-width:520px;margin:0 auto;padding-bottom:96px}
+
+/* header */
+header{padding:30px 22px 20px;background:linear-gradient(165deg,var(--hd1) 0%,var(--hd2) 100%);color:#fff}
+header h1{margin:0;font-size:23px;font-weight:700;letter-spacing:.04em}
+header h1::before{content:"🌺";margin-right:8px;font-size:.9em}
+header p{margin:4px 0 0;font-size:13.5px;opacity:.9;letter-spacing:.02em}
+.prog{margin-top:16px;font-size:13px}
+.bar{height:5px;border-radius:99px;background:rgba(255,255,255,.28);margin-top:7px;overflow:hidden}
 .bar i{display:block;height:100%;width:0;background:#fff;border-radius:99px;transition:width .35s}
 svg.wave{display:block;width:100%;height:22px;margin-top:-1px;color:var(--bg)}
-nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);display:flex;gap:8px;overflow-x:auto;padding:10px 16px;scrollbar-width:none}
+
+/* tabs */
+.navbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);display:flex;align-items:center}
+nav{flex:1;min-width:0;display:flex;gap:8px;overflow-x:auto;padding:10px 16px;scrollbar-width:none}
 nav::-webkit-scrollbar{display:none}
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
-nav button{flex:0 0 auto;border:1px solid var(--line);background:var(--surface);color:var(--sub);border-radius:14px;padding:6px 14px;font:inherit;font-size:13px;text-align:center;cursor:pointer;min-width:62px}
-nav button b{display:block;font-size:16px;color:var(--ink);line-height:1.3}
-nav button[aria-selected="true"]{background:var(--sea);border-color:var(--sea);color:var(--on-sea)}
+nav button{flex:0 0 auto;border:1px solid var(--line);background:var(--paper);color:var(--sub);border-radius:12px;padding:5px 13px;font:inherit;font-size:12.5px;text-align:center;cursor:pointer;min-width:60px;box-shadow:var(--shadow);transition:background .2s,color .2s,border-color .2s}
+nav button b{display:block;font-size:15px;font-weight:600;color:var(--ink);line-height:1.35}
+nav button[aria-selected="true"]{background:var(--sea);border-color:var(--sea);color:var(--on-sea);box-shadow:0 2px 8px rgba(79,127,151,.35)}
 nav button[aria-selected="true"] b{color:var(--on-sea)}
-nav .ck{display:none;font-style:normal;font-size:12px;margin-left:3px}
+nav .ck{display:none;font-style:normal;font-size:11px;margin-left:3px}
 nav button.done .ck{display:inline}
-nav button:focus-visible,label:focus-within{outline:2px solid var(--lagoon);outline-offset:2px}
-.day{padding:20px 16px 0}
-.day h2{margin:0;font-size:20px}
-.day .theme{margin:2px 0 8px;color:var(--sub);font-size:14px}
-.day .done{font-size:12px;color:var(--sea);font-weight:500}
-.note{margin:12px 0 0;padding:10px 12px;border-radius:12px;background:var(--sea-soft);font-size:13px;color:var(--ink)}
-ul{list-style:none;margin:14px 0 0;padding:0;border-left:2px solid var(--line);margin-left:6px}
+nav button:focus-visible,label:focus-within,.jrow:focus-visible,.jclose:focus-visible,#jump:focus-visible,#toTop:focus-visible,.lks a:focus-visible{outline:2px solid var(--sea);outline-offset:2px}
+
+/* day */
+.day{padding:22px 16px 0}
+.day h2{margin:0;font-size:20px;font-weight:700;letter-spacing:.01em}
+.day .theme{margin:2px 0 8px;color:var(--sub);font-size:13.5px}
+.day .done{display:inline-block;padding:1px 10px;font-size:12px;color:var(--sea);background:var(--sea-soft);border-radius:99px;font-weight:500}
+.note{margin:12px 0 0;padding:10px 12px;border-radius:10px;background:var(--tip-bg);border:1px solid var(--tip-line);font-size:13px}
+ul{list-style:none;margin:16px 0 0;padding:0;border-left:1.5px solid var(--line2);margin-left:6px}
 li{position:relative;margin:0 0 12px 18px}
-li::before{content:"";position:absolute;left:-25px;top:18px;width:10px;height:10px;border-radius:50%;background:var(--bg);border:2px solid var(--lagoon)}
-li.on::before{background:var(--lagoon)}
-label{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:var(--surface);border:1px solid var(--line);border-radius:16px;cursor:pointer}
-input[type=checkbox]{appearance:none;-webkit-appearance:none;flex:0 0 24px;width:24px;height:24px;margin:2px 0 0;border:2px solid var(--lagoon);border-radius:8px;background:var(--bg);display:grid;place-content:center;cursor:pointer}
-input[type=checkbox]::after{content:"";width:6px;height:11px;border:solid var(--on-sea);border-width:0 2.5px 2.5px 0;transform:rotate(45deg) scale(0);transition:transform .15s;margin-top:-2px}
+li::before{content:"";position:absolute;left:-24.5px;top:19px;width:9px;height:9px;border-radius:50%;background:var(--bg);border:2px solid var(--sea)}
+li.on::before{background:var(--sea)}
+
+/* cards */
+label{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;background:var(--paper);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);cursor:pointer}
+input[type=checkbox]{appearance:none;-webkit-appearance:none;flex:0 0 22px;width:22px;height:22px;margin:2px 0 0;border:1.5px solid var(--line2);border-radius:7px;background:var(--paper);display:grid;place-content:center;cursor:pointer;transition:background .15s,border-color .15s}
+input[type=checkbox]::after{content:"";width:5px;height:10px;border:solid var(--on-sea);border-width:0 2.2px 2.2px 0;transform:rotate(45deg) scale(0);transition:transform .15s;margin-top:-2px}
 input[type=checkbox]:checked{background:var(--sea);border-color:var(--sea)}
 input[type=checkbox]:checked::after{transform:rotate(45deg) scale(1)}
 .txt{min-width:0}
-.time{display:inline-block;font-size:12px;font-weight:700;color:var(--sea);margin-bottom:1px}
-.ttl{font-weight:500;font-size:15px}
+.time{display:inline-block;font-size:11.5px;font-weight:500;color:var(--sand-ink);background:var(--sand);padding:1px 9px;border-radius:99px;margin-bottom:3px;letter-spacing:.02em}
+.ttl{font-weight:500;font-size:15px;line-height:1.5}
 .dsc{font-size:13px;color:var(--sub);margin-top:2px}
-li.on .ttl{text-decoration:line-through;text-decoration-color:var(--lagoon);color:var(--sub)}
-.lks{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.lks a{font-size:12px;color:var(--sea);background:var(--sea-soft);border-radius:99px;padding:3px 10px;text-decoration:none;font-weight:500}.lks a:focus-visible{outline:2px solid var(--lagoon)}
-.warn{margin:6px 0 0;padding:10px 12px;border-radius:12px;background:var(--warn-bg);border:1px solid var(--warn-line);color:var(--warn-ink);font-size:13px}
-.warn b{display:block;margin-bottom:2px}
-.free{margin:28px 16px 0;padding:18px 14px 14px;border-radius:22px;background:linear-gradient(160deg,var(--sea-soft),var(--bg));border:1.5px solid var(--lagoon)}
-.free h2{margin:0;font-size:18px;line-height:1.4}
-.free .sub{margin:2px 0 14px;font-size:13px;color:var(--sub)}
-.fi{margin:0 0 10px}.fi:last-child{margin:0}.fi label{background:var(--bg)}
-.fi.on .ttl{text-decoration:line-through;text-decoration-color:var(--lagoon);color:var(--sub)}
-.hl{font-size:13px;color:var(--sub);margin-top:3px}
-.tip{margin-top:8px;padding:8px 10px;border-radius:10px;background:var(--sea-soft);font-size:12.5px;color:var(--ink)}
-li.has-sub{background:var(--surface);border:1px solid var(--line);border-radius:16px}
-li.has-sub>label{border:0;background:transparent}
-.sub{margin:0 14px 14px 50px}
+li.on .ttl{text-decoration:line-through;text-decoration-color:var(--line2);color:var(--sub)}
+.opt{margin-top:6px;font-size:13px;color:var(--sub)}.opt b{display:block;color:var(--ink);font-weight:500}
+.tip{margin-top:8px;padding:8px 10px;border-radius:10px;background:var(--tip-bg);border:1px solid var(--tip-line);font-size:12.5px}
+.lks{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.lks a{font-size:12px;color:var(--sea);background:var(--sea-soft);border-radius:99px;padding:2px 11px;text-decoration:none;font-weight:500}
+.warn{margin:8px 0 0;padding:10px 12px;border-radius:10px;background:var(--warn-bg);border:1px solid var(--warn-line);color:var(--warn-ink);font-size:13px}
+.warn b{display:block;margin-bottom:2px;font-weight:600}
+
+/* sub checklist */
+li.has-sub{background:var(--paper);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow)}
+li.has-sub>label{border:0;background:transparent;box-shadow:none}
+.sub{margin:0 14px 14px 48px}
 .sbody{display:grid;gap:0;margin-top:2px}
-.subh{display:block;list-style:none;cursor:pointer;font-size:14px;color:var(--ink);font-weight:500;padding:4px 0}
+.subh{display:block;list-style:none;cursor:pointer;font-size:14px;font-weight:500;padding:4px 0}
 .subh::-webkit-details-marker{display:none}
 .subh::after{content:"▾";float:right;color:var(--sub);transition:transform .2s}
-.sub:not([open]) .subh::after{transform:rotate(-90deg)}.subh b{color:var(--sea)}
-.sl{display:flex;align-items:center;gap:10px;padding:3px 0;border:0;border-radius:0;background:transparent;font-size:13px;color:var(--sub);cursor:pointer}
-.sl input{flex:0 0 20px;width:20px;height:20px;margin:0;border-radius:6px}
-.sl.on span{text-decoration:line-through;text-decoration-color:var(--lagoon);color:var(--sub)}
-#toTop{position:fixed;right:16px;bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:15;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--sea);color:var(--on-sea);display:grid;place-content:center;padding:0;cursor:pointer;box-shadow:0 4px 14px rgba(10,60,100,.25);opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .25s,transform .25s}
-#toTop.show{opacity:1;transform:none;pointer-events:auto}
-#toTop:focus-visible{outline:2px solid var(--lagoon);outline-offset:3px}
-.opt{margin-top:6px;font-size:13px;color:var(--sub)}.opt b{display:block;color:var(--ink);font-weight:500}
-.det{margin-top:8px;border:1px solid var(--warn-line);border-radius:16px;background:var(--bg);overflow:hidden}
-.det summary{padding:12px 14px;font-weight:500;font-size:14px;cursor:pointer;color:var(--warn-ink);background:var(--warn-bg);list-style:none}
+.sub:not([open]) .subh::after{transform:rotate(-90deg)}
+.subh b{font-weight:500;font-size:11.5px;margin-left:4px;padding:1px 9px;color:var(--sand-ink);background:var(--sand);border-radius:99px}
+.sl{display:flex;align-items:center;gap:10px;padding:3px 0;border:0;border-radius:0;background:transparent;box-shadow:none;font-size:13px;color:var(--sub);cursor:pointer}
+.sl input{flex:0 0 19px;width:19px;height:19px;margin:0;border-radius:6px}
+.sl.on span{text-decoration:line-through;text-decoration-color:var(--line2)}
+
+/* dinner detail card */
+.det{margin-top:8px;border:1px solid var(--line);border-radius:12px;background:var(--paper);overflow:hidden}
+.det summary{padding:11px 14px;font-weight:500;font-size:13.5px;cursor:pointer;color:var(--warn-ink);background:var(--warn-bg);list-style:none}
 .det summary::-webkit-details-marker{display:none}
 .det summary::after{content:"＋";float:right}.det[open] summary::after{content:"－"}
 .dbody{padding:12px;display:grid;gap:10px}
-.dinfo{padding:10px 12px;border-radius:12px;background:var(--sea-soft);font-size:13px}.dinfo b{display:block;margin-bottom:2px}
-.plan{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--surface)}
-.plan-h{padding:10px 12px;background:var(--sea-soft)}.plan-h .pn{font-weight:700;font-size:15px}.plan-h .pp{color:var(--sea);font-weight:700;font-size:14px}.plan-h .pf{font-size:12px;color:var(--sub);margin-top:1px}
-.prow{display:grid;grid-template-columns:62px 1fr;gap:8px;padding:7px 12px;border-top:1px solid var(--line);font-size:13px}.prow span:first-child{color:var(--sub)}
-.reset{display:block;margin:20px auto 0;border:0;background:none;color:var(--sub);font:inherit;font-size:12px;text-decoration:underline;cursor:pointer}
-@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.dinfo{padding:10px 12px;border-radius:10px;background:var(--tip-bg);border:1px solid var(--tip-line);font-size:13px}.dinfo b{display:block;margin-bottom:2px;font-weight:600}
+.plan{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--paper)}
+.plan-h{padding:10px 12px;background:var(--sea-soft)}
+.plan-h .pn{font-weight:600;font-size:14.5px}.plan-h .pp{color:var(--sea);font-weight:600;font-size:13.5px}.plan-h .pf{font-size:12px;color:var(--sub);margin-top:1px}
+.prow{display:grid;grid-template-columns:62px 1fr;gap:8px;padding:7px 12px;border-top:1px solid var(--line);font-size:13px}
+.prow span:first-child{color:var(--sub)}
+
+/* floating buttons */
+#jump,#toTop{position:fixed;right:16px;z-index:15;width:44px;height:44px;padding:0;border-radius:50%;display:grid;place-content:center;cursor:pointer}
+#jump{bottom:calc(20px + env(safe-area-inset-bottom,0px));background:var(--paper);color:var(--sea);border:1px solid var(--line2);box-shadow:0 4px 16px rgba(30,41,59,.16)}
+#toTop{bottom:calc(72px + env(safe-area-inset-bottom,0px));background:var(--sea);color:var(--on-sea);border:0;box-shadow:0 4px 16px rgba(30,41,59,.2);opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .25s,transform .25s}
+#toTop.show{opacity:1;transform:none;pointer-events:auto}
+
+/* quick-jump sheet */
+.sheet{position:fixed;inset:0;z-index:30;display:none}
+.sheet.open{display:block}
+.sheet .back{position:absolute;inset:0;background:rgba(30,41,59,.4);opacity:0;transition:opacity .25s}
+.sheet .panel{position:absolute;left:0;right:0;bottom:0;max-width:520px;margin:0 auto;max-height:48vh;overflow-y:auto;background:var(--bg);border-radius:20px 20px 0 0;padding:8px 14px calc(12px + env(safe-area-inset-bottom,0px));box-shadow:0 -8px 30px rgba(30,41,59,.18);transform:translateY(100%);transition:transform .28s ease}
+.sheet.show .back{opacity:1}
+.sheet.show .panel{transform:none}
+.jhead{display:flex;align-items:center;justify-content:space-between;padding:4px 2px 6px}
+.jhead b{font-size:15px;font-weight:600}
+.jclose{border:0;background:var(--paper);color:var(--sub);width:30px;height:30px;border-radius:50%;font-size:13px;cursor:pointer;box-shadow:var(--shadow)}
+.jrow{display:flex;align-items:center;gap:10px;width:100%;margin:5px 0;padding:8px 12px;border:1px solid var(--line);border-radius:12px;background:var(--paper);color:var(--ink);font:inherit;text-align:left;cursor:pointer;box-shadow:var(--shadow)}
+.jrow[aria-current="true"]{background:var(--sea-soft);border-color:var(--sea)}
+.jd{min-width:48px;font-weight:600;font-size:14px}
+.jn{flex:1;font-size:14px}
+.jp{font-size:11px;color:var(--sub)}
+
+.reset{display:block;margin:22px auto 0;border:0;background:none;color:var(--sub);font:inherit;font-size:12px;text-decoration:underline;cursor:pointer}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important}}
 </style>
 </head>
 <body>
 <div class="wrap">
 <header>
   <h1>那霸馬拉松行程</h1>
-  <p>12/4 – 12/8・沖繩那霸・暫訂</p>
+  <p>12/4 – 12/11・沖繩那霸</p>
   <div class="prog"><span id="ptxt"></span><div class="bar"><i id="pbar"></i></div></div>
 </header>
 <svg class="wave" viewBox="0 0 520 22" preserveAspectRatio="none" aria-hidden="true"><path d="M0 22V10C60 0 110 0 170 8s120 12 180 3 110-9 170 0v11z" fill="currentColor"/></svg>
-<nav id="tabs" role="tablist" aria-label="行程天數"></nav>
+<div class="navbar"><nav id="tabs" role="tablist" aria-label="行程天數"></nav></div>
 <main id="main"></main>
 <button class="reset" id="reset">清除所有勾選</button>
 </div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="快速跳轉日期"><div class="back" id="sheetBack"></div><div class="panel"><div class="jhead"><b>選單</b><button class="jclose" id="sheetClose" type="button" aria-label="關閉">✕</button></div><div id="jlist"></div></div></div>
+<button id="jump" type="button" aria-haspopup="dialog" aria-expanded="false" aria-label="選單：快速跳轉日期"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg></button>
 <button id="toTop" type="button" aria-label="回到頂部"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
 <script>
 var D=[
 
-{d:"🛒",w:"",n:"採買",free:1,title:"🛒 採買口袋名單",s:"剛好路過就再買、剛好買到再吃喝",items:[{t:"飲料",h:"自動販賣機",x:"",ch:"清單",c:["沖繩奶油可樂","波上宮苦瓜茶"],l:[["沖繩奶油可樂","https://www.instagram.com/reel/DYgSZm-T2A7"],["波上宮苦瓜茶","https://www.instagram.com/reel/DdbG0anBifN"]]},
-{t:"飲料",h:"7-ELEVEN",x:"",ch:"",c:["7-11紅茶奶茶"],l:[["7-11紅茶奶茶","https://www.instagram.com/reel/DdoM8yGyWzB"]]},
-{t:"超市",h:"沖繩調味料&食材",x:"網友推薦分享，買了就打勾放進購物籃",ch:"購物籃",c:["鹽昆布","堀西萬能調味粉香檸口味","セイワ食品 島辣椒粉","石垣島辣油","沖繩海鹽 地瓜🍠檸檬🍋火龍果","沖繩限定調味海帶芽","塩醬油 / 塩柚子醋","水雲& 醬汁","醃漬海葡萄","久米島蒜頭胡椒醬","牡蠣醬油🦪"],l:[["沖繩必買想買調味料&食材","https://www.threads.com/share/BAQxoO_2n6"]]},
+{d:"🛒",w:"",n:"採買",free:1,title:"🛒 採買口袋名單",s:"剛好路過就再買、剛好買到再吃喝",items:[{t:"飲料",h:"自動販賣機",x:"",ch:"清單",c:["沖繩奶油可樂","波上宮苦瓜茶","霧紅茶","POWERED GEAR 沖繩","琉球可樂"],l:[["沖繩奶油可樂","https://www.instagram.com/reel/DYgSZm-T2A7"],["波上宮苦瓜茶","https://www.instagram.com/reel/DdbG0anBifN"]]},
+{t:"飲料",h:"超商",x:"",ch:"清單",c:["7-11紅茶奶茶","山原食堂檸檬茶","花笠食堂冷茶","Koucha Kaden GARDEN LEMON TEA","森永優格","森永CAFE"],l:[["7-11紅茶奶茶","https://www.instagram.com/reel/DdoM8yGyWzB"],["本地知名飲料","https://feeljapan.net/okinawa-zhhk/article/2021-03-02-17571/"]]},
+{t:"飲料",h:"超市",x:"",ch:"清單",c:["HIRAMI 8","美味玄米"],l:[["本地知名飲料","https://feeljapan.net/okinawa-zhhk/article/2021-03-02-17571/"]]},
+{t:"超市",h:"沖繩調味料&食材",x:"網友推薦分享，買了就打勾放進購物籃",ch:"",c:["鹽昆布","堀西萬能調味粉香檸口味","セイワ食品 島辣椒粉","石垣島辣油","沖繩海鹽 地瓜🍠檸檬🍋火龍果","沖繩限定調味海帶芽","塩醬油 / 塩柚子醋","水雲& 醬汁","醃漬海葡萄","久米島蒜頭胡椒醬","牡蠣醬油🦪"],l:[["沖繩必買想買調味料&食材","https://www.threads.com/share/BAQxoO_2n6"]]},
 {t:"補貨",h:"歌町 Omoromachi おもろまち",x:"逛街購物補貨",l:[["目利きの銀次 新都心本舗","https://maps.app.goo.gl/ZhTUCCDv3vu9r8p9A?g_st=ic"],["ユニクロ サンエー那覇メインプレイス店","https://maps.app.goo.gl/pXcs5pxjMuxjKNaw9?g_st=ic"]]},
 {t:"散策、土產",h:"國際通",x:"各式沖繩黑糖、御菓子御殿紅芋塔、吉祥物限定商品。",tip:"隨時只要有走到國際通，看哪一家順眼就可以直接進去逛。",l:[["沖繩特色美食","https://visitokinawajapan.com/zh-hant/travel-inspiration/must-try-okinawa-street-foods/"],["沖繩美食","https://www.threads.com/share/_kv42r-Ee"],["那霸伴手禮推薦清單","https://www.lotofjapan.com/pages/okinawaomiyage"],["推薦真的好吃的伴零食","https://www.threads.com/share/_osOkD3_x"]]}
 ]},
-
 
 
 {d:"12/4",w:"五",n:"抵達日",s:"（不飲酒）踩點、補給",items:[
@@ -168,7 +205,7 @@ x:"吃飽後沿路輕鬆逛國際通、喝咖啡、採買伴手禮。傍晚直�
  {t:"18:15–20:15",h:"島しゃぶしゃぶNAKAMA 阿古豬涮涮鍋",l:[["島しゃぶしゃぶNAKAMA","https://maps.app.goo.gl/XSDMXKkQcwx6vAR28?g_st=ic"],["菜單","https://tabelog.com/okinawa/A4701/A470101/47020585/"]],det:1}]},
 
 
-{d:"12/7",w:"一",n:"北上日",s:"（盡量不飲酒）搭阿鴻租的車🚗自駕北上度假",items:[
+{d:"12/7",w:"一",n:"北上日",s:"（盡量不飲酒）搭阿鴻租的車🚗自駕北上度假💊暈車藥",items:[
 {t:"早餐",h:"飯店附近早餐選擇",x:"想自己去吃吃看，沒有要約大家",o:[["和食・あさとん食堂 6:00",""],["和食・風林火山 7:00",""],["和食・Anytime Breakfast  7:00",""],
 ["輕食・oHacorte Bakery 7:30",""],["輕食・パーラーぬちぐすい 8:00",""],["咖啡・AO CAFE 7:00",""],["喫茶・甘味處 萬丸 7:00",""],["美式・Better Girl 7:00",""]],
 l:[["あさとん食堂","https://maps.app.goo.gl/G81ffwVMfFH2qk4P6?g_st=ic"],["風林火山","https://maps.app.goo.gl/4DgFyVkEK8rMCBXb6?g_st=ic"],["Anytime Breakfast Higashimachi","https://maps.app.goo.gl/mSuF1QUTJg7jn5Ev8?g_st=ic"],["oHacorte Bakery","https://maps.app.goo.gl/qn6mM1KFLaXvdFYd6?g_st=ic"],["パーラーぬちぐすい","https://maps.app.goo.gl/rBv5dXe4xWQXMsfL6?g_st=ic"],["AO CAFE","https://maps.app.goo.gl/LJE97F8E6YggApfJA?g_st=ic"],["甘味處 萬丸 那霸泉崎店","https://maps.app.goo.gl/Se3dupyLgJm7yT2V7?g_st=ic"],["Better Girl","https://maps.app.goo.gl/x345Ddi8Mij4ZeKv8?g_st=ic"]]
@@ -183,18 +220,22 @@ l:[["あさとん食堂","https://maps.app.goo.gl/G81ffwVMfFH2qk4P6?g_st=ic"],["
 ]},
 
 
-{d:"12/8",w:"二",n:"南下日",s:"搭阿融租的車🚗市區還車、大家解散✨有人返台",items:[{t:"山原",h:"沖繩北部範圍景點",x:"看到就亂列清單而已",o:[["景點・沖繩美麗海水族館 8:30-18:30",""],["海鮮・漁師食堂 本部店 10:00-16:00","網友推薦單點生蠔"],["玉子燒飯糰・福助の玉子焼き  11:00-17:00",""],["塔可餅・和タコス 11:00-18:00",""]],l:[["漁師食堂 大ばんぶる舞 本部店","https://maps.app.goo.gl/kKSBNoCLTvwgVqs2A?g_st=ic"],["福助の玉子焼き 備瀬のフクギ並木店","https://maps.app.goo.gl/4MRPr98uWGXCfBzd8?g_st=ic"],["Kazutako 和タコス","https://maps.app.goo.gl/o7r39ZN8c3zztEKC9?g_st=ic"],
-["沖縄美ら海水族館","https://maps.app.goo.gl/w3juSYGNR72UPi7h8?g_st=ic"],
-["備瀨崎海灘 備瀬崎🦀潮間帶","https://maps.app.goo.gl/5beBHndfVMyiPXnB8?g_st=ic"]
-]},{t:"白天",h:"自駕南下",x:"中途踩點 好像「道の駅」也不錯",l:[["泊港漁市場 泊いゆまち","https://maps.app.goo.gl/YWqebyDNeQm18GFo6?g_st=ic"],["おんなの駅 なかゆくい市場","https://maps.app.goo.gl/oYnL1JEd1a2LQqLe8?g_st=ic"],["許田休息站 やんばる物産センター","https://maps.app.goo.gl/yETuzapGJTUrsfsv6?g_st=ic"],["名護市営市場","https://maps.app.goo.gl/7ffT5koUWhphXSb7A?g_st=ic"]]}, {t:"機場",h:"那霸機場",x:"於旭橋站搭單軌電車前往機場（約 12 分鐘）",o:[["15:25 星宇（阿鴻 13:00到那霸市）","航班編號：JX871"],["20:25 華航（瑪莎 18:00到那霸市）","班機編號：CI123"]]}]},
+{d:"12/8",w:"二",n:"南下日",s:"搭阿融租的車🚗市區還車、大家解散✨有人返台💊暈車藥",items:[{t:"山原",h:"沖繩北部範圍景點",x:"看到就亂列清單而已",o:[["景點・沖繩美麗海水族館 8:30-18:30",""],["海鮮・漁師食堂 本部店 10:00-16:00","網友推薦單點生蠔"],["玉子燒飯糰・福助の玉子焼き  11:00-17:00",""],["塔可餅・和タコス 11:00-18:00",""]],l:[["漁師食堂 大ばんぶる舞 本部店","https://maps.app.goo.gl/kKSBNoCLTvwgVqs2A?g_st=ic"],["福助の玉子焼き 備瀬のフクギ並木店","https://maps.app.goo.gl/4MRPr98uWGXCfBzd8?g_st=ic"],["Kazutako 和タコス","https://maps.app.goo.gl/o7r39ZN8c3zztEKC9?g_st=ic"],["沖縄美ら海水族館","https://maps.app.goo.gl/w3juSYGNR72UPi7h8?g_st=ic"],["備瀨崎海灘 備瀬崎🦀潮間帶","https://maps.app.goo.gl/5beBHndfVMyiPXnB8?g_st=ic"]]},{t:"白天",h:"自駕南下",x:"中途踩點 好像「道の駅」也不錯",l:[["泊港漁市場 泊いゆまち","https://maps.app.goo.gl/YWqebyDNeQm18GFo6?g_st=ic"],["おんなの駅 なかゆくい市場","https://maps.app.goo.gl/oYnL1JEd1a2LQqLe8?g_st=ic"],["許田休息站 やんばる物産センター","https://maps.app.goo.gl/yETuzapGJTUrsfsv6?g_st=ic"],["名護市営市場","https://maps.app.goo.gl/7ffT5koUWhphXSb7A?g_st=ic"]]}, {t:"機場",h:"那霸機場",x:"於旭橋站搭單軌電車前往機場（約 12 分鐘）",o:[["15:25 星宇（阿鴻 13:00到那霸市）","航班編號：JX871"],["20:25 華航（瑪莎 18:00到那霸市）","班機編號：CI123"]]}
+]},
 
-{d:"🚶🏻‍♀️",w:"",n:"散策",free:1,title:"🚶🏻‍♀️ 散策口袋名單",s:"都可以、剛好路過就去",items:[
+
+
+
+{d:"💙",w:"",n:"散策",free:1,title:"💙 散策口袋名單",s:"都可以、剛好路過就去",items:[
 {t:"泡湯",h:"りっかりっか湯",x:"靠近牧志站步行國際通到，有SPA按摩池，也有烤箱、蒸氣室、碳酸溫泉♨️沒有硫磺味，可以泡很久，有兩個湯屋區，每天會交換。另外還有付費的岩盤浴可以使用。營業時間 6:00-23:00",l:[["りっかりっか湯","https://maps.app.goo.gl/M5AAHkf6L5Y6VK9BA?g_st=ic"]]},
 {t:"散策",h:"壺屋陶瓷街",x:"全長約400公尺，鋪滿了琉球石灰岩石板路，兩旁保留了紅瓦古民家、石牆與歷史悠久的登窯。路上也很多小店、咖啡",l:[["那覇市立壺屋焼物博物館","https://maps.app.goo.gl/ait3f6JJekkm8JWA7?g_st=ic"]]},
 {t:"潮間帶",h:"PARCO CITY",x:"可能太緊湊😣早起退潮前後2小時去隔壁的潮間帶。不要進去PARCO CITY，會出不來",l:[["PARCO CITY 浦添西海岸","https://maps.app.goo.gl/bo9qh7zWMFU6nGfa9?g_st=ic"],["沖繩PARCO是什麼無限城","https://www.threads.com/share/BAV6xdRMJ1"],["PARCO旁邊的潮間帶","https://www.instagram.com/reel/DXbhEwYEkF5"],["Okinawa潮汐漲退時間表","https://zh.tideschart.com/Japan/Okinawa/"]]},
 {t:"夜間活動",h:"",x:"",o:[["明治橋・那霸港夕陽或夜景","眺望遠方那霸西道路高架橋與港口起重機的夜間燈火"],["那霸埠頭旅客碼頭","著名的「大型民謠餐船（Moby Dick）」停靠，安全的親水步道日劇港灣風景"],["歌舞秀・Charusan 6 20:00-午夜","表演精彩並非想像中的成人秀"],["天空酒吧 AUGUST MOON・高空露台酒吧 16:00-午夜",""]],l:[["明治橋","https://maps.app.goo.gl/uDzbpmrkhkzfcexL9?g_st=ic"],["那霸埠頭旅客碼頭","https://maps.app.goo.gl/bPj2asP3mRRNNZtX8?g_st=ic"],["Charusan 6 ちゅらさん6沖縄","https://maps.app.goo.gl/dcc2UpvzchA4yU997?g_st=ic"],["天空酒吧","https://maps.app.goo.gl/V6eUTGzAPGAetTvp8?g_st=ic"]]},
-{t:"其他地鐵站",h:"",x:"",o:[["首里站","首里城、達摩寺"],["安里站","榮町市場"]],l:[["西來院 達摩寺","https://maps.app.goo.gl/WxiHGSQ9afkfJcws7?g_st=ic"],["榮町市場","https://maps.app.goo.gl/FNGFXeDeHt182Jd27?g_st=ic"]]
-}
+{t:"其他地鐵站",h:"",x:"",o:[["首里站","首里城、達摩寺"],["安里站","榮町市場"]],l:[["西來院 達摩寺","https://maps.app.goo.gl/WxiHGSQ9afkfJcws7?g_st=ic"],["榮町市場","https://maps.app.goo.gl/FNGFXeDeHt182Jd27?g_st=ic"]]}
+]},
+
+{d:"📝",w:"",n:"小抄",free:1,title:"📝 小抄筆記",s:"方便旅行的一些事情",items:[
+{t:"退稅",h:"免稅",x:" ",l:[["懶人包","https://linshibi.com/?p=53268"]]},
 ]}
 
 ];
@@ -264,7 +305,7 @@ function render(){
 }
 function upd(){
   var e=document.getElementById("dn");
-  if(e){var r=dayTotals(cur);e.textContent="今日完成 "+r[0]+" / "+r[1]}
+  if(e){var r=dayTotals(cur);e.textContent="已經完成 "+r[0]+" / "+r[1]}
   progress();markTabs();
 }
 function lkIco(k){
@@ -283,11 +324,44 @@ main.addEventListener("change",function(e){
   var box=c.closest(".sub");box.querySelector(".subh b").textContent=box.querySelectorAll("input:checked").length+" / "+box.dataset.n;
   save();upd();
 });
+function goTab(i){
+  cur=i;renderTabs();render();
+  var reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion:reduce)").matches;
+  window.scrollTo({top:0,behavior:reduce?"auto":"smooth"});
+  var a=tabs.querySelector('[aria-selected="true"]');
+  if(a)tabs.scrollLeft=a.offsetLeft-(tabs.clientWidth-a.offsetWidth)/2;
+}
 tabs.addEventListener("click",function(e){
   var b=e.target.closest("button");if(!b)return;
-  cur=+b.dataset.i;renderTabs();render();window.scrollTo({top:0});
-  var a=tabs.querySelector('[aria-selected="true"]');if(a&&a.scrollIntoView)a.scrollIntoView({inline:"center",block:"nearest"});
+  goTab(+b.dataset.i);
 });
+/* 快速跳轉抽屜 */
+var sheet=document.getElementById("sheet"),jump=document.getElementById("jump"),jlist=document.getElementById("jlist"),jt;
+function openSheet(){
+  jlist.innerHTML=D.map(function(d,i){
+    var r=dayTotals(i),done=dayDone(i);
+    return '<button type="button" class="jrow" data-i="'+i+'"'+(i===cur?' aria-current="true"':'')+'><span class="jd">'+d.d+'</span><span class="jn">'+esc(d.n)+'</span><span class="jp">'+(done?'✅':r[0]+' / '+r[1])+'</span></button>';
+  }).join("");
+  clearTimeout(jt);sheet.classList.add("open");
+  requestAnimationFrame(function(){sheet.classList.add("show")});
+  document.documentElement.style.overflow="hidden";
+  jump.setAttribute("aria-expanded","true");
+  var c=jlist.querySelector('[aria-current="true"]');if(c){c.focus({preventScroll:true});c.scrollIntoView({block:"center"})}
+}
+function closeSheet(){
+  sheet.classList.remove("show");
+  clearTimeout(jt);jt=setTimeout(function(){sheet.classList.remove("open")},280);
+  document.documentElement.style.overflow="";
+  jump.setAttribute("aria-expanded","false");
+}
+jump.addEventListener("click",openSheet);
+document.getElementById("sheetBack").addEventListener("click",closeSheet);
+document.getElementById("sheetClose").addEventListener("click",closeSheet);
+jlist.addEventListener("click",function(e){
+  var b=e.target.closest(".jrow");if(!b)return;
+  closeSheet();goTab(+b.dataset.i);jump.focus({preventScroll:true});
+});
+document.addEventListener("keydown",function(e){if(e.key==="Escape"&&sheet.classList.contains("open"))closeSheet()});
 main.addEventListener("change",function(e){
   var c=e.target;if(!c.dataset||!c.dataset.id)return;
   if(c.checked)S[c.dataset.id]=1;else delete S[c.dataset.id];
