@@ -60,6 +60,26 @@ button.card{width:100%;margin:0;font:inherit;text-align:left;cursor:pointer;-web
 .go{color:var(--sea);font-size:18px;font-weight:500}
 .empty{padding:24px 20px;color:var(--sub);font-size:14px;text-align:center}
 footer{margin-top:36px;text-align:center;font-size:12px;color:var(--sub)}
+.gcount{display:inline-block;margin-left:8px;padding:0 9px;border-radius:99px;background:var(--sea-soft);color:var(--sea);font-size:11.5px;font-weight:500;letter-spacing:.02em;vertical-align:1px}
+
+/* floating tag-stats button + sheet */
+#stat{position:fixed;right:16px;bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:15;width:44px;height:44px;padding:0;border-radius:50%;background:var(--paper);color:var(--sea);border:1px solid var(--line2);box-shadow:0 4px 16px rgba(30,41,59,.16);display:grid;place-content:center;cursor:pointer}
+#stat:focus-visible,.sclose:focus-visible{outline:2px solid var(--sea);outline-offset:2px}
+.sheet{position:fixed;inset:0;z-index:30;display:none}
+.sheet.open{display:block}
+.sheet .back{position:absolute;inset:0;background:rgba(30,41,59,.4);opacity:0;transition:opacity .25s}
+.sheet .panel{position:absolute;left:0;right:0;bottom:0;max-width:520px;margin:0 auto;max-height:62vh;overflow-y:auto;background:var(--bg);border-radius:20px 20px 0 0;padding:10px 16px calc(14px + env(safe-area-inset-bottom,0px));box-shadow:0 -8px 30px rgba(30,41,59,.18);transform:translateY(100%);transition:transform .28s ease}
+.sheet.show .back{opacity:1}
+.sheet.show .panel{transform:none}
+.shead{display:flex;align-items:center;justify-content:space-between;padding:4px 2px 8px}
+.shead b{font-size:15px;font-weight:600}
+.shead small{display:block;font-size:12px;color:var(--sub);font-weight:400}
+.sclose{border:0;background:var(--paper);color:var(--sub);width:30px;height:30px;border-radius:50%;font-size:13px;cursor:pointer;box-shadow:var(--shadow)}
+.srow{display:flex;align-items:center;gap:10px;padding:8px 2px}
+.srow .tag{flex:0 0 auto;min-width:64px;text-align:center}
+.sbar{flex:1;height:6px;border-radius:99px;background:var(--line);overflow:hidden}
+.sbar i{display:block;height:100%;border-radius:99px;background:var(--sea)}
+.srow b{flex:0 0 auto;min-width:34px;text-align:right;font-size:13.5px;font-weight:600}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
@@ -79,23 +99,25 @@ footer{margin-top:36px;text-align:center;font-size:12px;color:var(--sub)}
 </footer>
 </div>
 
+<button id="stat" type="button" aria-haspopup="dialog" aria-label="標籤統計"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" aria-hidden="true"><path d="M5 20V11M12 20V4M19 20v-7"/></svg></button>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="標籤統計"><div class="back" id="sheetBack"></div><div class="panel"><div class="shead"><div><b>標籤統計</b><small id="sheetSub"></small></div><button class="sclose" id="sheetClose" type="button" aria-label="關閉">✕</button></div><div id="slist"></div></div></div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>
 var TRIPS=[
-{group:"✈️ 2026",icon:"🏃🏻‍♀️",title:"那霸 2026 NAHA MARATHON",meta:"12/4 – 12/8",tag:["路跑","朋朋","SoloExtension"],href:"2026NAHAGroup.html"}
-,{group:"✈️ 2026",icon:"🎶",title:"首爾 2026 NOL FESTIVAL",meta:"10/16 – 10/19",tag:["追星","朋朋"]}  
-,{group:"✈️ 2026",icon:"🎶",title:"首爾 2026 ATA FESTIVAL",meta:"9/18 - 9/22",tag:["追星","Solo"]}
-,{group:"✈️ 2026",icon:"🇯🇵",title:"名古屋中部新穗高",meta:"2/27 - 3/3",tag:["朋朋"]}
+{group:"✈️ 2026",icon:"🏃🏻‍♀️",title:"那霸 2026 NAHA MARATHON",meta:"12/4 – 12/8 我的第二場全馬",tag:["路跑","朋朋","SoloExtension"],href:"2026NAHAGroup.html"}
+,{group:"✈️ 2026",icon:"🎶",title:"首爾 2026 NOL FESTIVAL",meta:"10/16 – 10/19 為了WOODZ & CORTIS",tag:["追星","朋朋"]}  
+,{group:"✈️ 2026",icon:"🎶",title:"首爾 2026 ATA FESTIVAL",meta:"9/18 - 9/22 為了WOODZ",tag:["追星","Solo"]}
+,{group:"✈️ 2026",icon:"🇯🇵",title:"名古屋中部新穗高",meta:"2/27 - 3/3 看梵谷家族展，還去高山賞雪",tag:["朋朋"]}
 
-,{group:"✈️ 2025",icon:"🇯🇵",title:"成田東京賞楓",meta:"12/6 - 12/8",tag:["朋朋","BD"]}
-,{group:"✈️ 2025",icon:"🇯🇵",title:"岡山大阪萬博",meta:"9/27 -10/1",tag:"朋朋"}
-,{group:"✈️ 2025",icon:"🏃🏻‍♀️",title:"名古屋 2025 NAGOYA WOMEN'S MARATHON",meta:"3/6 – 3/11",tag:["路跑","朋朋"]}
+,{group:"✈️ 2025",icon:"🇯🇵",title:"成田東京賞楓",meta:"12/6 - 12/8 楓葉季之旅、東京聖誕節",tag:["朋朋","BD"]}
+,{group:"✈️ 2025",icon:"🇯🇵",title:"岡山大阪萬博",meta:"9/27 -10/1 朋朋說走就走",tag:"朋朋"}
+,{group:"✈️ 2025",icon:"🏃🏻‍♀️",title:"名古屋 2025 NAGOYA WOMEN'S MARATHON",meta:"3/6 – 3/11 我的初馬",tag:["路跑","朋朋"]}
 
-,{group:"✈️ 2024",icon:"🇰🇷",title:"大邱釜山賞楓",meta:"11/2 - 11/6",tag:["賞楓","Solo","BD"]}
-,{group:"✈️ 2024",icon:"🇯🇵",title:"東京母親節",meta:"5/11 - 5/16",tag:"家人"}
-,{group:"✈️ 2024",icon:"🇯🇵",title:"九州熊本",meta:"1/20 - 1/26",tag:"朋朋"}
+,{group:"✈️ 2024",icon:"🇰🇷",title:"大邱釜山賞楓",meta:"11/2 - 11/6 楓葉季之旅",tag:["Solo","BD"]}
+,{group:"✈️ 2024",icon:"🇯🇵",title:"東京母親節",meta:"5/11 - 5/16 跟媽媽兩人之旅",tag:"家人"}
+,{group:"✈️ 2024",icon:"🇯🇵",title:"九州熊本",meta:"1/20 - 1/26 第一次有人正式約我出國，看到人生初雪",tag:"朋朋"}
 
-,{group:"✈️ 2023",icon:"🇯🇵",title:"神奈川橫濱",meta:"10/19 - 10/28",tag:["初次","Solo","BD"]}
+,{group:"✈️ 2023",icon:"🇯🇵",title:"神奈川橫濱",meta:"10/19 - 10/28 人生第一次出國",tag:["Solo","BD"]}
 ];
 
 function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
@@ -108,9 +130,33 @@ document.getElementById("app").addEventListener("click",function(e){
 var app=document.getElementById("app"),groups=[],map={};
 TRIPS.forEach(function(t){var g=t.group||"行程";if(!map[g]){map[g]=[];groups.push(g)}map[g].push(t)});
 app.innerHTML=groups.length?groups.map(function(g){
-  return '<h2>'+esc(g)+'</h2><div class="list">'+map[g].map(function(t){
+  return '<h2>'+esc(g)+'<span class="gcount">'+map[g].length+' 趟</span></h2><div class="list">'+map[g].map(function(t){
     return '<'+(t.href?'a class="card" href="'+esc(t.href)+'" target="_blank" rel="noopener"'
 :'button type="button" class="card locked" data-msg="'+esc(t.msg||"未公開")+'"')+'><span class="ico">'+esc(t.icon||"🧳")+'</span><span class="info"><div class="ttl">'+esc(t.title)+'</div><div class="meta">'+esc(t.meta)+'</div>'+(t.tag?'<div class="tags">'+[].concat(t.tag).map(function(x){return '<span class="tag">'+esc(x)+'</span>'}).join("")+'</div>':'')+'</span><span class="go" aria-hidden="true">'+(t.href?'›':'')+'</span></'+(t.href?'a':'button')+'>'}).join("")+'</div>'}).join(""):'<p class="empty">目前還沒有行程</p>';
+
+/* 標籤統計：算每個 tag 出現在幾趟旅行 */
+var tagCount={},tagList=[];
+TRIPS.forEach(function(t){[].concat(t.tag||[]).forEach(function(x){if(!(x in tagCount)){tagCount[x]=0;tagList.push(x)}tagCount[x]++})});
+var sorted=tagList.map(function(n,i){return {n:n,c:tagCount[n],i:i}}).sort(function(a,b){return b.c-a.c||a.i-b.i});
+var sheet=document.getElementById("sheet"),stat=document.getElementById("stat"),sjt;
+function openSheet(){
+  var max=sorted.length?sorted[0].c:1;
+  document.getElementById("sheetSub").textContent="共 "+TRIPS.length+" 趟旅行・"+sorted.length+" 種標籤";
+  document.getElementById("slist").innerHTML=sorted.length?sorted.map(function(r){
+    return '<div class="srow"><span class="tag">'+esc(r.n)+'</span><span class="sbar"><i style="width:'+Math.round(r.c/max*100)+'%"></i></span><b>'+r.c+' 趟</b></div>'}).join(""):'<p class="empty">還沒有標籤</p>';
+  clearTimeout(sjt);sheet.classList.add("open");
+  requestAnimationFrame(function(){sheet.classList.add("show")});
+  document.documentElement.style.overflow="hidden";
+}
+function closeSheet(){
+  sheet.classList.remove("show");
+  clearTimeout(sjt);sjt=setTimeout(function(){sheet.classList.remove("open")},280);
+  document.documentElement.style.overflow="";
+}
+stat.addEventListener("click",openSheet);
+document.getElementById("sheetBack").addEventListener("click",closeSheet);
+document.getElementById("sheetClose").addEventListener("click",closeSheet);
+document.addEventListener("keydown",function(e){if(e.key==="Escape"&&sheet.classList.contains("open"))closeSheet()});
 </script>
 </body>
 </html>
